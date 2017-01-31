@@ -1,3 +1,3 @@
-/Users/Marco/Documents/School/Spring '17/1 Operating Systems/CLionProjects/BST-MostCommonString/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/Marco/Documents/School/Spring '17/1 Operating Systems/CLionProjects/BST-MostCommonString/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/Marco/Documents/School/Spring '17/1 Operating Systems/CLionProjects/BST-MostCommonString/cmake-build-debug/CMakeFiles/BST_MostCommonString.dir
+/Users/Marco/Documents/School/Spring '17/1 Operating Systems/CLionProjects/BST-MostCommonWord/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/Marco/Documents/School/Spring '17/1 Operating Systems/CLionProjects/BST-MostCommonWord/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/Marco/Documents/School/Spring '17/1 Operating Systems/CLionProjects/BST-MostCommonWord/cmake-build-debug/CMakeFiles/BST_MostCommonString.dir

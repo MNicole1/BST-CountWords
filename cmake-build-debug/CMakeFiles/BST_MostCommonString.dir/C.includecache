@@ -6,7 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/Users/Marco/Documents/School/Spring '17/1 Operating Systems/CLionProjects/BST-MostCommonString/main.c
+/Users/Marco/Documents/School/Spring '17/1 Operating Systems/CLionProjects/BST-MostCommonWord/main.c
 stdio.h
+-
+stdlib.h
+-
+string.h
 -
 

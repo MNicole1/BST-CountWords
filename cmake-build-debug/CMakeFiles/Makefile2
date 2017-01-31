@@ -54,10 +54,10 @@ RM = "/Users/Marco/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/Marco/Documents/School/Spring '17/1 Operating Systems/CLionProjects/BST-MostCommonString"
+CMAKE_SOURCE_DIR = "/Users/Marco/Documents/School/Spring '17/1 Operating Systems/CLionProjects/BST-MostCommonWord"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/Marco/Documents/School/Spring '17/1 Operating Systems/CLionProjects/BST-MostCommonString/cmake-build-debug"
+CMAKE_BINARY_DIR = "/Users/Marco/Documents/School/Spring '17/1 Operating Systems/CLionProjects/BST-MostCommonWord/cmake-build-debug"
 
 #=============================================================================
 # Target rules for target CMakeFiles/BST_MostCommonString.dir
@@ -66,7 +66,7 @@ CMAKE_BINARY_DIR = "/Users/Marco/Documents/School/Spring '17/1 Operating Systems
 CMakeFiles/BST_MostCommonString.dir/all:
 	$(MAKE) -f CMakeFiles/BST_MostCommonString.dir/build.make CMakeFiles/BST_MostCommonString.dir/depend
 	$(MAKE) -f CMakeFiles/BST_MostCommonString.dir/build.make CMakeFiles/BST_MostCommonString.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/Marco/Documents/School/Spring '17/1 Operating Systems/CLionProjects/BST-MostCommonString/cmake-build-debug/CMakeFiles" --progress-num=1,2 "Built target BST_MostCommonString"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/Marco/Documents/School/Spring '17/1 Operating Systems/CLionProjects/BST-MostCommonWord/cmake-build-debug/CMakeFiles" --progress-num=1,2 "Built target BST_MostCommonString"
 .PHONY : CMakeFiles/BST_MostCommonString.dir/all
 
 # Include target in all.
@@ -76,9 +76,9 @@ all: CMakeFiles/BST_MostCommonString.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/BST_MostCommonString.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/Marco/Documents/School/Spring '17/1 Operating Systems/CLionProjects/BST-MostCommonString/cmake-build-debug/CMakeFiles" 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/Marco/Documents/School/Spring '17/1 Operating Systems/CLionProjects/BST-MostCommonWord/cmake-build-debug/CMakeFiles" 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/BST_MostCommonString.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/Marco/Documents/School/Spring '17/1 Operating Systems/CLionProjects/BST-MostCommonString/cmake-build-debug/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/Marco/Documents/School/Spring '17/1 Operating Systems/CLionProjects/BST-MostCommonWord/cmake-build-debug/CMakeFiles" 0
 .PHONY : CMakeFiles/BST_MostCommonString.dir/rule
 
 # Convenience name for target.

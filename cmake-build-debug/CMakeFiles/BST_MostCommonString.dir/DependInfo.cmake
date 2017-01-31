@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/Marco/Documents/School/Spring '17/1 Operating Systems/CLionProjects/BST-MostCommonString/main.c" "/Users/Marco/Documents/School/Spring '17/1 Operating Systems/CLionProjects/BST-MostCommonString/cmake-build-debug/CMakeFiles/BST_MostCommonString.dir/main.c.o"
+  "/Users/Marco/Documents/School/Spring '17/1 Operating Systems/CLionProjects/BST-MostCommonWord/main.c" "/Users/Marco/Documents/School/Spring '17/1 Operating Systems/CLionProjects/BST-MostCommonWord/cmake-build-debug/CMakeFiles/BST_MostCommonString.dir/main.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 
