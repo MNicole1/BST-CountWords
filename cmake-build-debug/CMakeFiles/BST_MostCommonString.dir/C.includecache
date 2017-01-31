@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/Marco/Documents/School/Spring '17/1 Operating Systems/CLionProjects/BST-MostCommonString/main.c
+stdio.h
+-
+
