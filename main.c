@@ -18,7 +18,9 @@ struct bstNode {
 };
 
 struct bstRoot *newBst () {
-	return (struct bstRoot *)malloc(sizeof(struct bstRoot));
+	struct bstRoot *root = (struct bstRoot *)malloc(sizeof(struct bstRoot));
+	root->rootNode = NULL;
+	return root;
 }
 
 // initializes new tree node with newWord for key
