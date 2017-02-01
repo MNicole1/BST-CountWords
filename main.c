@@ -118,14 +118,14 @@ int main () {
 	struct bstRoot *wordTree = newBst();
 
 	// Test case, should produce a fairly balanced tree
-	incrementOrInsertRoot(wordTree, "marry", strcmp);
-	incrementOrInsertRoot(wordTree, "don", strcmp);
-	incrementOrInsertRoot(wordTree, "jackson", strcmp);
+	incrementOrInsertRoot(wordTree, "mary", strcmp);
+	incrementOrInsertRoot(wordTree, "donna", strcmp);
+	incrementOrInsertRoot(wordTree, "julie", strcmp);
 	incrementOrInsertRoot(wordTree, "orson", strcmp);
 	incrementOrInsertRoot(wordTree, "orson", strcmp);
 	incrementOrInsertRoot(wordTree, "trever", strcmp);
 	incrementOrInsertRoot(wordTree, "trever", strcmp);
-	incrementOrInsertRoot(wordTree, "alec", strcmp);
+	incrementOrInsertRoot(wordTree, "allison", strcmp);
 	incrementOrInsertRoot(wordTree, "zain", strcmp);
 
 	printTree(wordTree);

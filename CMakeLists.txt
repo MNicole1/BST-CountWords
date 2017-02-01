@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.6)
-project(BST_MostCommonString)
+project(BST_MostCommonWord)
 
 set(CMAKE_C_STANDARD 11)
 
