@@ -90,30 +90,31 @@ void incrementOrInsertRoot (struct bstRoot *root, char *word, Compare cmp) {
 	}
 }
 
-// Recursive in-order traversal of tree. prints the word and the number of times it appears.
-void printSubtree (struct bstNode *this) {
+// Recursive in-order traversal of tree. prints some extra information about tree structure
+void debugSubtree (struct bstNode *this, int depth) {
 	if (this->left != NULL) {
 		printf("(");
-		printSubtree(this->left);
+		debugSubtree(this->left, depth + 1);
 		printf(") <- ");
 	}
 
-	printf("%s:%d", this->word, this->count);
+	printf("%d:%s:%d", depth, this->word, this->count);
 
 	if (this->right != NULL) {
 		printf(" -> (");
-		printSubtree(this->right);
+		debugSubtree(this->right, depth + 1);
 		printf(")");
 	}
 }
 
 // Initiates recursive printing.
-void printTree (struct bstRoot *root) {
+void debugTree (struct bstRoot *root) {
 	if (root->rootNode != NULL) {
-		printSubtree(root->rootNode);
+		debugSubtree(root->rootNode, 0);
 	} else {
 		printf("Tree is empty.");
 	}
+	printf("\n");
 }
 
 int main () {
@@ -130,8 +131,8 @@ int main () {
 	incrementOrInsertRoot(wordTree, "allison", strcmp);
 	incrementOrInsertRoot(wordTree, "zain", strcmp);
 
-	printTree(wordTree);
 
+	debugTree(wordTree);
 	deleteTree(wordTree);
 
 	return(0);
