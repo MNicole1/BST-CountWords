@@ -114,10 +114,10 @@ void printTree (struct bstRoot *root) {
 	}
 }
 
-void main () {
+int main () {
 	struct bstRoot *wordTree = newBst();
 
-
+	// Test case, should produce a fairly balanced tree
 	incrementOrInsertRoot(wordTree, "marry", strcmp);
 	incrementOrInsertRoot(wordTree, "don", strcmp);
 	incrementOrInsertRoot(wordTree, "jackson", strcmp);
@@ -131,4 +131,6 @@ void main () {
 	printTree(wordTree);
 
 	deleteTree(wordTree);
+
+	return(0);
 }
