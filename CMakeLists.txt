@@ -4,4 +4,4 @@ project(BST_MostCommonString)
 set(CMAKE_C_STANDARD 11)
 
 set(SOURCE_FILES main.c)
-add_executable(BST_MostCommonString ${SOURCE_FILES})
+add_executable(BST_MostCommonWord ${SOURCE_FILES})
