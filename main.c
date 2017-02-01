@@ -119,77 +119,7 @@ void debugTree (struct bstRoot *root) {
 
 int main () {
 	// Test case 1, should produce a fairly balanced tree
-	printf("\nCase 1: Balanced tree. (due to insertion order)\n");
-	struct bstRoot *wordTree = newBst();
-	incrementOrInsertRoot(wordTree, "mary", strcmp);
-	incrementOrInsertRoot(wordTree, "donna", strcmp);
-	incrementOrInsertRoot(wordTree, "julie", strcmp);
-	incrementOrInsertRoot(wordTree, "trever", strcmp);
-	incrementOrInsertRoot(wordTree, "trever", strcmp);
-	incrementOrInsertRoot(wordTree, "orson", strcmp);
-	incrementOrInsertRoot(wordTree, "orson", strcmp);
-	incrementOrInsertRoot(wordTree, "allison", strcmp);
-	incrementOrInsertRoot(wordTree, "zain", strcmp);
-	debugTree(wordTree);
-	deleteTree(wordTree);
-
-	// Test case 2, should produce a right skewed tree
-	printf("\nCase 2: Right only tree.\n");
-	struct bstRoot *wordTree2 = newBst();
-	incrementOrInsertRoot(wordTree2, "allison", strcmp);
-	incrementOrInsertRoot(wordTree2, "donna", strcmp);
-	incrementOrInsertRoot(wordTree2, "julie", strcmp);
-	incrementOrInsertRoot(wordTree2, "mary", strcmp);
-	incrementOrInsertRoot(wordTree2, "orson", strcmp);
-	incrementOrInsertRoot(wordTree2, "orson", strcmp);
-	incrementOrInsertRoot(wordTree2, "trever", strcmp);
-	incrementOrInsertRoot(wordTree2, "trever", strcmp);
-	incrementOrInsertRoot(wordTree2, "zain", strcmp);
-	debugTree(wordTree2);
-	deleteTree(wordTree2);
-
-	// Test case 3, should produce a left skewed tree
-	printf("\nCase 3: Left only tree.\n");
-	struct bstRoot *wordTree3 = newBst();
-	incrementOrInsertRoot(wordTree3, "zain", strcmp);
-	incrementOrInsertRoot(wordTree3, "trever", strcmp);
-	incrementOrInsertRoot(wordTree3, "trever", strcmp);
-	incrementOrInsertRoot(wordTree3, "orson", strcmp);
-	incrementOrInsertRoot(wordTree3, "orson", strcmp);
-	incrementOrInsertRoot(wordTree3, "mary", strcmp);
-	incrementOrInsertRoot(wordTree3, "julie", strcmp);
-	incrementOrInsertRoot(wordTree3, "donna", strcmp);
-	incrementOrInsertRoot(wordTree3, "allison", strcmp);
-	debugTree(wordTree3);
-	deleteTree(wordTree3);
-
-	// Test case 4, from assignment
-	printf("\nCase 4: Tree from assignment.\n");
-	struct bstRoot *wordTree4 = newBst();
-	incrementOrInsertRoot(wordTree4, "now", strcmp);
-	incrementOrInsertRoot(wordTree4, "is", strcmp);
-	incrementOrInsertRoot(wordTree4, "the", strcmp);
-	incrementOrInsertRoot(wordTree4, "time", strcmp);
-	incrementOrInsertRoot(wordTree4, "for", strcmp);
-	incrementOrInsertRoot(wordTree4, "all", strcmp);
-	incrementOrInsertRoot(wordTree4, "good", strcmp);
-	incrementOrInsertRoot(wordTree4, "men", strcmp);
-	incrementOrInsertRoot(wordTree4, "to", strcmp);
-	incrementOrInsertRoot(wordTree4, "come", strcmp);
-	incrementOrInsertRoot(wordTree4, "to", strcmp);
-	incrementOrInsertRoot(wordTree4, "the", strcmp);
-	incrementOrInsertRoot(wordTree4, "aid", strcmp);
-	incrementOrInsertRoot(wordTree4, "of", strcmp);
-	incrementOrInsertRoot(wordTree4, "their", strcmp);
-	incrementOrInsertRoot(wordTree4, "party", strcmp);
-	debugTree(wordTree4);
-	deleteTree(wordTree4);
-
-	// Test case 5, empty tree
-	printf("\nCase 5: An empty tree.\n");
-	struct bstRoot *wordTree5 = newBst();
-	debugTree(wordTree5);
-	deleteTree(wordTree5);
+	printf("Hello World");
 
 	return(0);
 }
