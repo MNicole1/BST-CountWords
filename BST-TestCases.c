@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+// TODO: Pull tree into own file so I can use in multiple files.
+
 //use typedef to make calling the compare function easier
 typedef int (*Compare) (const char *, const char *);
 
