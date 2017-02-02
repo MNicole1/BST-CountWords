@@ -25,14 +25,14 @@ BstNode *newBstNode (char *newWord) {
 }
 
 // Recursively deletes the subtree under this node as well as this node.
-void deleteSubtree (BstNode *thisNode) {
+void destroySubtree (BstNode *thisNode) {
 	if (thisNode->left != NULL) {
-		deleteSubtree(thisNode->left);
+		destroySubtree(thisNode->left);
 		thisNode->left = NULL;
 	}
 
 	if (thisNode->right != NULL) {
-		deleteSubtree(thisNode->right);
+		destroySubtree(thisNode->right);
 		thisNode->right = NULL;
 	}
 
@@ -41,9 +41,9 @@ void deleteSubtree (BstNode *thisNode) {
 }
 
 // Starts the recursive process
-void deleteTree (Bst *thisNode) {
+void destroyTree (Bst *thisNode) {
 	if (thisNode->rootNode != NULL) {
-		deleteSubtree(thisNode->rootNode);
+		destroySubtree(thisNode->rootNode);
 	}
 	free(thisNode);
 }

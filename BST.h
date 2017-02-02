@@ -21,9 +21,9 @@ Bst *newBst ();
 
 BstNode *newBstNode (char *newWord);
 
-void deleteSubtree (BstNode *thisNode);
+void destroySubtree (BstNode *thisNode);
 
-void deleteTree (Bst *thisNode);
+void destroyTree (Bst *thisNode);
 
 void incrementOrInsertSubtree (BstNode *thisNode, char *word, Compare cmp);
 
