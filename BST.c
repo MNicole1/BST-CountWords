@@ -126,4 +126,27 @@ void printTree (Bst *thisTree) {
 		printf("There were no words given.");
 	}
 	printf("\n");
+}\
+
+void subTreeToMathematica (BstNode *thisNode) {
+	if (thisNode->left != NULL) {
+		printf("%s -> %s, ", thisNode->key, thisNode->left->key);
+		subTreeToMathematica(thisNode->left);
+	}
+
+	if (thisNode->right != NULL) {
+		printf("%s -> %s, ", thisNode->key, thisNode->right->key);
+		subTreeToMathematica(thisNode->right);
+	}
+}
+
+void treeToMathematica (Bst *thisTree) {
+	if (thisTree->rootNode != NULL) {
+		printf("TreePlot[{root -> %s, ", thisTree->rootNode->key);
+		subTreeToMathematica(thisTree->rootNode);
+		printf("}, Automatic, root, VertexLabeling -> True, ImageSize -> Full, AspectRatio -> Automatic]");
+	} else {
+		printf("There were no words given.");
+	}
+	printf("\n");
 }

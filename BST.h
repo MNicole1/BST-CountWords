@@ -37,4 +37,8 @@ void printSubTree (BstNode *thisNode);
 
 void printTree (Bst *thisTree);
 
+void printSubTreeStructure (BstNode *thisNode, int depth, int tabSize);
+
+void treeToMathematica (Bst *thisTree);
+
 #endif //BST_MOSTCOMMONWORD_BST_H
