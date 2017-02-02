@@ -5,8 +5,6 @@
 
 // TODO: Implement rotation on insert to allow for self balancing trees.
 
-// TODO: Possibly new struct (WordNCount) as key for BST so that count isn't built into tree structure, needs redef Compare to cmp(WordNCount*, char*)
-
 Bst *newBst () {
 	Bst *root = (Bst *)malloc(sizeof(Bst));
 	root->rootNode = NULL;
