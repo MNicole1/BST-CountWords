@@ -13,8 +13,8 @@ struct bstRoot *newBst () {
 struct bstNode *newBstNode (char *newWord) {
 	struct bstNode *newNode = (struct bstNode *)malloc(sizeof(struct bstNode));
 
-	newNode->word = (char *)malloc(strlen(newWord) + 1); // memory for the word
-	strcpy(newNode->word, newWord);
+	newNode->key = (char *)malloc(strlen(newWord) + 1); // memory for the key
+	strcpy(newNode->key, newWord);
 	newNode->count = 1;
 	newNode->left = NULL;
 	newNode->right = NULL;
@@ -34,7 +34,7 @@ void  deleteSubtree (struct bstNode *this) {
 		this->right = NULL;
 	}
 
-	free(this->word);
+	free(this->key);
 	free(this);
 }
 
@@ -48,7 +48,7 @@ void deleteTree (struct bstRoot *this) {
 
 // Recursively searches for a word. if found increments the node's count, if not adds new node in correct place.
 void incrementOrInsert (struct bstNode *this, char *word, Compare cmp) {
-	int compared = cmp(word, this->word);
+	int compared = cmp(word, this->key);
 	if (compared < 0) {
 		// insert left
 		if (this->left == NULL) {
@@ -86,7 +86,7 @@ void debugSubtree (struct bstNode *this, int depth) {
 		printf(") <- ");
 	}
 
-	printf("%d:%s:%d", depth, this->word, this->count);
+	printf("%d:%s:%d", depth, this->key, this->count);
 
 	if (this->right != NULL) {
 		printf(" -> (");
@@ -99,6 +99,27 @@ void debugSubtree (struct bstNode *this, int depth) {
 void debugTree (struct bstRoot *root) {
 	if (root->rootNode != NULL) {
 		debugSubtree(root->rootNode, 0);
+	} else {
+		printf("Tree is empty.");
+	}
+	printf("\n");
+}
+
+void printSubTree (struct bstNode *this) {
+	if (this->left != NULL) {
+		printSubTree(this->left);
+	}
+
+	printf("%s: %d\n", this->key, this->count);
+
+	if (this->right != NULL) {
+		printSubTree(this->right);
+	}
+}
+
+void printTree (struct bstRoot *root) {
+	if (root->rootNode != NULL) {
+		printSubTree(root->rootNode);
 	} else {
 		printf("Tree is empty.");
 	}

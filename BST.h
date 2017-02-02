@@ -1,7 +1,3 @@
-//
-// Created by Marcello Nicoletti on 2/1/17.
-//
-
 #ifndef BST_MOSTCOMMONWORD_BST_H
 #define BST_MOSTCOMMONWORD_BST_He
 
@@ -15,7 +11,7 @@ struct bstRoot {
 
 // Stores the word and the number of times it occurs plus pointers to child branches
 struct bstNode {
-	char *word;
+	char *key;
 	int count;
 	struct bstNode *left;
 	struct bstNode *right;
@@ -36,5 +32,9 @@ void incrementOrInsertRoot (struct bstRoot *root, char *word);
 void debugSubtree (struct bstNode *this, int depth);
 
 void debugTree (struct bstRoot *root);
+
+void printSubTree (struct bstNode *this);
+
+void printTree (struct bstRoot *root);
 
 #endif //BST_MOSTCOMMONWORD_BST_H
