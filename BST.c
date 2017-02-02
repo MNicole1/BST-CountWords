@@ -27,105 +27,105 @@ BstNode *newBstNode (char *newWord) {
 }
 
 // Recursively deletes the subtree under this node as well as this node.
-void deleteSubtree (BstNode *this) {
-	if (this->left != NULL) {
-		deleteSubtree(this->left);
-		this->left = NULL;
+void deleteSubtree (BstNode *thisNode) {
+	if (thisNode->left != NULL) {
+		deleteSubtree(thisNode->left);
+		thisNode->left = NULL;
 	}
 
-	if (this->right != NULL) {
-		deleteSubtree(this->right);
-		this->right = NULL;
+	if (thisNode->right != NULL) {
+		deleteSubtree(thisNode->right);
+		thisNode->right = NULL;
 	}
 
-	free(this->key);
-	free(this);
+	free(thisNode->key);
+	free(thisNode);
 }
 
 // Starts the recursive process
-void deleteTree (Bst *this) {
-	if (this->rootNode != NULL) {
-		deleteSubtree(this->rootNode);
+void deleteTree (Bst *thisNode) {
+	if (thisNode->rootNode != NULL) {
+		deleteSubtree(thisNode->rootNode);
 	}
-	free(this);
+	free(thisNode);
 }
 
 // Recursively searches for a word. if found increments the node's count, if not adds new node in correct place.
-void incrementOrInsert (BstNode *this, char *word, Compare cmp) {
-	int compared = cmp(word, this->key);
+void incrementOrInsertSubtree (BstNode *thisNode, char *word, Compare cmp) {
+	int compared = cmp(word, thisNode->key);
 	if (compared < 0) {
 		// insert left
-		if (this->left == NULL) {
-			this->left = newBstNode(word);
+		if (thisNode->left == NULL) {
+			thisNode->left = newBstNode(word);
 		} else {
-			incrementOrInsert(this->left, word, cmp);
+			incrementOrInsertSubtree(thisNode->left, word, cmp);
 		}
 	} else if (compared > 0) {
 		// insert right
-		if (this->right == NULL) {
-			this->right = newBstNode(word);
+		if (thisNode->right == NULL) {
+			thisNode->right = newBstNode(word);
 		} else {
-			incrementOrInsert(this->right, word, cmp);
+			incrementOrInsertSubtree(thisNode->right, word, cmp);
 		}
 	} else { // if (compared == 0)
-		this->count++;
+		thisNode->count++;
 	}
 }
 
-void incrementOrInsertRoot (Bst *root, char *word) {
-	if (root->rootNode == NULL) {
-		root->rootNode = newBstNode(word);
-		root->count = 1;
+void incrementOrInsert (Bst *thisTree, char *word) {
+	if (thisTree->rootNode == NULL) {
+		thisTree->rootNode = newBstNode(word);
+		thisTree->count = 1;
 	} else {
-		incrementOrInsert(root->rootNode, word, strcmp);
-		root->count++;
+		incrementOrInsertSubtree(thisTree->rootNode, word, strcmp);
+		thisTree->count++;
 	}
 }
 
 // Recursive in-order traversal of tree. prints some extra information about tree structure
-void debugSubtree (BstNode *this, int depth) {
-	if (this->left != NULL) {
+void debugSubtree (BstNode *thisNode, int depth) {
+	if (thisNode->left != NULL) {
 		printf("(");
-		debugSubtree(this->left, depth + 1);
+		debugSubtree(thisNode->left, depth + 1);
 		printf(") <- ");
 	}
 
-	printf("%d:%s:%d", depth, this->key, this->count);
+	printf("%d:%s:%d", depth, thisNode->key, thisNode->count);
 
-	if (this->right != NULL) {
+	if (thisNode->right != NULL) {
 		printf(" -> (");
-		debugSubtree(this->right, depth + 1);
+		debugSubtree(thisNode->right, depth + 1);
 		printf(")");
 	}
 }
 
 // Initiates recursive printing.
-void debugTree (Bst *root) {
-	if (root->rootNode != NULL) {
-		debugSubtree(root->rootNode, 0);
+void debugTree (Bst *thisTree) {
+	if (thisTree->rootNode != NULL) {
+		debugSubtree(thisTree->rootNode, 0);
 	} else {
 		printf("Tree is empty.");
 	}
 	printf("\n");
 }
 
-void printSubTree (BstNode *this) {
-	if (this->left != NULL) {
-		printSubTree(this->left);
+void printSubTree (BstNode *thisNode) {
+	if (thisNode->left != NULL) {
+		printSubTree(thisNode->left);
 	}
 
-	printf("%s: %d\n", this->key, this->count);
+	printf("%s: %d\n", thisNode->key, thisNode->count);
 
-	if (this->right != NULL) {
-		printSubTree(this->right);
+	if (thisNode->right != NULL) {
+		printSubTree(thisNode->right);
 	}
 }
 
-void printTree (Bst *root) {
-	if (root->rootNode != NULL) {
-		printSubTree(root->rootNode);
+void printTree (Bst *thisTree) {
+	if (thisTree->rootNode != NULL) {
+		printSubTree(thisTree->rootNode);
 	} else {
-		printf("Tree is empty.");
+		printf("There were no words given.");
 	}
 	printf("\n");
 }

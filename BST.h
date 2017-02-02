@@ -7,8 +7,8 @@ typedef int (*Compare) (const char *, const char *);
 typedef struct bstNode {
 	char *key;
 	int count;
-	struct BstNode *left;
-	struct BstNode *right;
+	struct bstNode *left;
+	struct bstNode *right;
 } BstNode;
 
 // Keeps track of root of tree, allows for root to be included in rotations.
@@ -21,20 +21,20 @@ Bst *newBst ();
 
 BstNode *newBstNode (char *newWord);
 
-void deleteSubtree (BstNode *this);
+void deleteSubtree (BstNode *thisNode);
 
-void deleteTree (Bst *this);
+void deleteTree (Bst *thisNode);
 
-void incrementOrInsert (BstNode *this, char *word, Compare cmp);
+void incrementOrInsertSubtree (BstNode *thisNode, char *word, Compare cmp);
 
-void incrementOrInsertRoot (Bst *root, char *word);
+void incrementOrInsert (Bst *thisTree, char *word);
 
-void debugSubtree (BstNode *this, int depth);
+void debugSubtree (BstNode *thisNode, int depth);
 
-void debugTree (Bst *root);
+void debugTree (Bst *thisTree);
 
-void printSubTree (BstNode *this);
+void printSubTree (BstNode *thisNode);
 
-void printTree (Bst *root);
+void printTree (Bst *thisTree);
 
 #endif //BST_MOSTCOMMONWORD_BST_H

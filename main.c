@@ -8,5 +8,5 @@ int main () {
 
 	// TODO: Insert into a tree provided by BST.c/h
 
-	return(0);
+	return (0);
 }
