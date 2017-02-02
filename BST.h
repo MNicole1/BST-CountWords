@@ -3,38 +3,38 @@
 
 typedef int (*Compare) (const char *, const char *);
 
-// Keeps track of root of tree, allows for root to be included in rotations.
-struct bstRoot {
-	struct bstNode *rootNode;
-	int count;
-};
-
 // Stores the word and the number of times it occurs plus pointers to child branches
-struct bstNode {
+typedef struct bstNode {
 	char *key;
 	int count;
-	struct bstNode *left;
-	struct bstNode *right;
-};
+	struct BstNode *left;
+	struct BstNode *right;
+} BstNode;
 
-struct bstRoot *newBst ();
+// Keeps track of root of tree, allows for root to be included in rotations.
+typedef struct bst {
+	BstNode *rootNode;
+	int count;
+} Bst;
 
-struct bstNode *newBstNode (char *newWord);
+Bst *newBst ();
 
-void deleteSubtree (struct bstNode *this);
+BstNode *newBstNode (char *newWord);
 
-void deleteTree (struct bstRoot *this);
+void deleteSubtree (BstNode *this);
 
-void incrementOrInsert (struct bstNode *this, char *word, Compare cmp);
+void deleteTree (Bst *this);
 
-void incrementOrInsertRoot (struct bstRoot *root, char *word);
+void incrementOrInsert (BstNode *this, char *word, Compare cmp);
 
-void debugSubtree (struct bstNode *this, int depth);
+void incrementOrInsertRoot (Bst *root, char *word);
 
-void debugTree (struct bstRoot *root);
+void debugSubtree (BstNode *this, int depth);
 
-void printSubTree (struct bstNode *this);
+void debugTree (Bst *root);
 
-void printTree (struct bstRoot *root);
+void printSubTree (BstNode *this);
+
+void printTree (Bst *root);
 
 #endif //BST_MOSTCOMMONWORD_BST_H

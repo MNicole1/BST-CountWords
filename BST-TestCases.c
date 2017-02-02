@@ -8,7 +8,7 @@
 int main () {
 	// Test case 1, should produce a balanced tree. This is because keys are inserted in level-order
 	printf("\nCase 1: Balanced tree. (due to insertion order)\n");
-	struct bstRoot *wordTree = newBst();
+	Bst *wordTree = newBst();
 	incrementOrInsertRoot(wordTree, "mary");
 	incrementOrInsertRoot(wordTree, "donna");
 	incrementOrInsertRoot(wordTree, "julie");
@@ -23,7 +23,7 @@ int main () {
 
 	// Test case 2, should produce a right skewed tree
 	printf("\nCase 2: Right only tree.\n");
-	struct bstRoot *wordTree2 = newBst();
+	Bst *wordTree2 = newBst();
 	incrementOrInsertRoot(wordTree2, "allison");
 	incrementOrInsertRoot(wordTree2, "donna");
 	incrementOrInsertRoot(wordTree2, "julie");
@@ -38,7 +38,7 @@ int main () {
 
 	// Test case 3, should produce a left skewed tree
 	printf("\nCase 3: Left only tree.\n");
-	struct bstRoot *wordTree3 = newBst();
+	Bst *wordTree3 = newBst();
 	incrementOrInsertRoot(wordTree3, "zain");
 	incrementOrInsertRoot(wordTree3, "trever");
 	incrementOrInsertRoot(wordTree3, "trever");
@@ -53,7 +53,7 @@ int main () {
 
 	// Test case 4, from assignment
 	printf("\nCase 4: Tree from assignment.\n");
-	struct bstRoot *wordTree4 = newBst();
+	Bst *wordTree4 = newBst();
 	incrementOrInsertRoot(wordTree4, "now");
 	incrementOrInsertRoot(wordTree4, "is");
 	incrementOrInsertRoot(wordTree4, "the");
@@ -75,9 +75,9 @@ int main () {
 
 	// Test case 5, empty tree
 	printf("\nCase 5: An empty tree.\n");
-	struct bstRoot *wordTree5 = newBst();
+	Bst *wordTree5 = newBst();
 	debugTree(wordTree5);
 	deleteTree(wordTree5);
 
-	return(0);
+	return (0);
 }

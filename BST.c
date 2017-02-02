@@ -7,15 +7,15 @@
 
 // TODO: Possibly new struct (WordNCount) as key for BST so that count isn't built into tree structure, needs redef Compare to cmp(WordNCount*, char*)
 
-struct bstRoot *newBst () {
-	struct bstRoot *root = (struct bstRoot *)malloc(sizeof(struct bstRoot));
+Bst *newBst () {
+	Bst *root = (Bst *)malloc(sizeof(Bst));
 	root->rootNode = NULL;
 	return root;
 }
 
 // initializes new tree node with newWord for key
-struct bstNode *newBstNode (char *newWord) {
-	struct bstNode *newNode = (struct bstNode *)malloc(sizeof(struct bstNode));
+BstNode *newBstNode (char *newWord) {
+	BstNode *newNode = (BstNode *)malloc(sizeof(BstNode));
 
 	newNode->key = (char *)malloc(strlen(newWord) + 1); // memory for the key
 	strcpy(newNode->key, newWord);
@@ -27,7 +27,7 @@ struct bstNode *newBstNode (char *newWord) {
 }
 
 // Recursively deletes the subtree under this node as well as this node.
-void  deleteSubtree (struct bstNode *this) {
+void deleteSubtree (BstNode *this) {
 	if (this->left != NULL) {
 		deleteSubtree(this->left);
 		this->left = NULL;
@@ -43,7 +43,7 @@ void  deleteSubtree (struct bstNode *this) {
 }
 
 // Starts the recursive process
-void deleteTree (struct bstRoot *this) {
+void deleteTree (Bst *this) {
 	if (this->rootNode != NULL) {
 		deleteSubtree(this->rootNode);
 	}
@@ -51,7 +51,7 @@ void deleteTree (struct bstRoot *this) {
 }
 
 // Recursively searches for a word. if found increments the node's count, if not adds new node in correct place.
-void incrementOrInsert (struct bstNode *this, char *word, Compare cmp) {
+void incrementOrInsert (BstNode *this, char *word, Compare cmp) {
 	int compared = cmp(word, this->key);
 	if (compared < 0) {
 		// insert left
@@ -72,7 +72,7 @@ void incrementOrInsert (struct bstNode *this, char *word, Compare cmp) {
 	}
 }
 
-void incrementOrInsertRoot (struct bstRoot *root, char *word) {
+void incrementOrInsertRoot (Bst *root, char *word) {
 	if (root->rootNode == NULL) {
 		root->rootNode = newBstNode(word);
 		root->count = 1;
@@ -83,7 +83,7 @@ void incrementOrInsertRoot (struct bstRoot *root, char *word) {
 }
 
 // Recursive in-order traversal of tree. prints some extra information about tree structure
-void debugSubtree (struct bstNode *this, int depth) {
+void debugSubtree (BstNode *this, int depth) {
 	if (this->left != NULL) {
 		printf("(");
 		debugSubtree(this->left, depth + 1);
@@ -100,7 +100,7 @@ void debugSubtree (struct bstNode *this, int depth) {
 }
 
 // Initiates recursive printing.
-void debugTree (struct bstRoot *root) {
+void debugTree (Bst *root) {
 	if (root->rootNode != NULL) {
 		debugSubtree(root->rootNode, 0);
 	} else {
@@ -109,7 +109,7 @@ void debugTree (struct bstRoot *root) {
 	printf("\n");
 }
 
-void printSubTree (struct bstNode *this) {
+void printSubTree (BstNode *this) {
 	if (this->left != NULL) {
 		printSubTree(this->left);
 	}
@@ -121,7 +121,7 @@ void printSubTree (struct bstNode *this) {
 	}
 }
 
-void printTree (struct bstRoot *root) {
+void printTree (Bst *root) {
 	if (root->rootNode != NULL) {
 		printSubTree(root->rootNode);
 	} else {
