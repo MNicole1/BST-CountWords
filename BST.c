@@ -3,6 +3,10 @@
 #include <string.h>
 #include "BST.h"
 
+// TODO: Implement rotation on insert to allow for self balancing trees.
+
+// TODO: Possibly new struct (WordNCount) as key for BST so that count isn't built into tree structure, needs redef Compare to cmp(WordNCount*, char*)
+
 struct bstRoot *newBst () {
 	struct bstRoot *root = (struct bstRoot *)malloc(sizeof(struct bstRoot));
 	root->rootNode = NULL;
