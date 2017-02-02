@@ -7,6 +7,7 @@ int main () {
 	// TODO: Tokenize text into words by spaces.
 
 	// TODO: Insert into a tree provided by BST.c/h
+	treeToMathematica(wordTree);
 
 	return (0);
 }
