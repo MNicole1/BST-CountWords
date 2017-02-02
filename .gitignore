@@ -96,3 +96,5 @@ fabric.properties
 *.app
 
 cmake-build-debug/*
+
+.idea/.name

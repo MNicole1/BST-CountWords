@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/BST-MostCommonWord.iml" filepath="$PROJECT_DIR$/.idea/BST-MostCommonWord.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/BST-CountWords.iml" filepath="$PROJECT_DIR$/.idea/BST-CountWords.iml" />
     </modules>
   </component>
 </project>
