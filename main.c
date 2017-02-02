@@ -5,23 +5,23 @@
 #include "BST.h"
 
 
-char *getWord (FILE *fp) {
-	char word[100];
-	int ch;
-	size_t idx;
+char *getWord (FILE *filePointer) {
+	char thisWord[100];
+	int currentChar;
+	size_t charIndex;
 
-	for (idx = 0; idx < sizeof word - 1;) {
-		ch = fgetc(fp);
-		if (ch == EOF) break;
-		if (!isalpha(ch)) {
-			if (!idx) continue; // Nothing read yet; skip this character
+	for (charIndex = 0; charIndex < sizeof(thisWord) - 1;) {
+		currentChar = fgetc(filePointer);
+		if (currentChar == EOF) break;
+		if (!isalpha(currentChar)) {
+			if (!charIndex) continue; // Nothing read yet; skip this character
 			else break; // we are beyond the current word
 		}
-		word[idx++] = tolower(ch);
+		thisWord[charIndex++] = (char)tolower(currentChar);
 	}
-	if (!idx) return NULL; // No characters were successfully read
-	word[idx] = '\0';
-	return strdup(word);
+	if (!charIndex) return NULL; // charIndex still 0, no characters were successfully read
+	thisWord[charIndex] = '\0';
+	return strdup(thisWord);
 }
 
 int main () {
@@ -38,7 +38,6 @@ int main () {
 
 	printf("\nWord Counts:\n");
 	printTree(wordTree);
-	treeToMathematica(wordTree);
 	destroyTree(wordTree);
 
 	fclose(wordFile);
