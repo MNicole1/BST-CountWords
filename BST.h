@@ -1,43 +1,70 @@
 #ifndef BST_MOSTCOMMONWORD_BST_H
 #define BST_MOSTCOMMONWORD_BST_He
 
-typedef int (*Compare) (const char *, const char *);
+// TODO: New Comments for each function.
 
-// Stores the word and the number of times it occurs plus pointers to child branches
-typedef struct bstNode {
-	char *key;
+// Types and/or Structures ———————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+// change this between data types
+typedef char Key;
+
+// Stores the custom data for this version of BST
+// change this between data types
+typedef struct nodeDataType {
+	Key *word;
 	int count;
-	struct bstNode *left;
-	struct bstNode *right;
+} NodeData;
+
+// Stores pointers to data and child branches
+typedef struct bstNodeType {
+	NodeData *data;
+	struct bstNodeType *left;
+	struct bstNodeType *right;
 } BstNode;
 
 // Keeps track of root of tree, allows for root to be included in rotations.
-typedef struct bst {
+typedef struct bstType {
 	BstNode *rootNode;
 	int count;
 } Bst;
 
+// Functions ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+int customComparer (const NodeData *nodeData, const Key *key);
+
+void customOnInsertExisting (NodeData *thisNodeData);
+
+char *nodeDataKeyToString (NodeData *thisNodeData);
+
+char *nodeDataToString (NodeData *thisNodeData);
+
+void nodeDataDestroy (NodeData *thisNodeData);
+
+NodeData *newNodeData (Key *key);
+
 Bst *newBst ();
 
-BstNode *newBstNode (char *newWord);
+BstNode *newBstNode (Key *newKey);
 
-void destroySubtree (BstNode *thisNode);
+void nodeDestroy (BstNode *thisNode);
 
-void destroyTree (Bst *thisNode);
+void subTreeDestroy (BstNode *thisNode);
 
-void incrementOrInsertSubtree (BstNode *thisNode, char *word, Compare cmp);
+void treeDestroy (Bst *thisNode);
 
-void incrementOrInsert (Bst *thisTree, char *word);
+void subTreeInsert (BstNode *thisNode, Key *testKey);
 
-void debugSubtree (BstNode *thisNode, int depth);
+void treeInsert (Bst *thisTree, Key *testKey);
 
-void debugTree (Bst *thisTree);
+void subTreeDebug (BstNode *thisNode, int depth);
 
-void printSubTree (BstNode *thisNode);
+void treeDebug (Bst *thisTree);
 
-void printTree (Bst *thisTree);
+void subTreePrint (BstNode *thisNode);
 
-void printSubTreeStructure (BstNode *thisNode, int depth, int tabSize);
+void treePrint (Bst *thisTree);
+
+void subTreeToMathematica (BstNode *thisNode);
 
 void treeToMathematica (Bst *thisTree);
 

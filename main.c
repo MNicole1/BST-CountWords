@@ -4,7 +4,6 @@
 #include <ctype.h>
 #include "BST.h"
 
-
 char *getWord (FILE *filePointer) {
 	char thisWord[100];
 	int currentChar;
@@ -21,25 +20,26 @@ char *getWord (FILE *filePointer) {
 	}
 	if (!charIndex) return NULL; // charIndex still 0, no characters were successfully read
 	thisWord[charIndex] = '\0';
-	return strdup(thisWord);
+	return strdup(thisWord); // strdup mallocs a string for me, I'll need to free it later
 }
 
 int main () {
 	// words.txt has 100 unique words.
 	// there are a total of 145 word occurrences.
 	// the most times any word shows up is 4.
-	FILE *wordFile = fopen("words.txt", "r");
 	Bst *wordTree = newBst();
+	FILE *wordFile = fopen("words.txt", "r");
 
 	char *word;
 	while (word = getWord(wordFile)) {
-		incrementOrInsert(wordTree, word);
+		treeInsert(wordTree, word);
+		free(word); // freeing the extra word that's been malloced in getWord.
 	}
+	fclose(wordFile);
 
 	printf("\nWord Counts:\n");
-	printTree(wordTree);
-	destroyTree(wordTree);
+	treePrint(wordTree);
+	treeDestroy(wordTree);
 
-	fclose(wordFile);
 	return (0);
 }
