@@ -57,6 +57,45 @@ void treeDestroy (Bst *thisTree) {
 	free(thisTree);
 }
 
+// Recurse down the right branch to find the maximum value under this node.
+// Used as part of the remove process and as a general utility.
+NodeData *subTreeMax (BstNode *thisNode) {
+	// TODO: Not Implemented
+	return NULL;
+}
+
+// Begins the recursion to find the tree's maximum value.
+NodeData *treeMax (Bst *thisTree) {
+	// TODO: Not Implemented
+	return NULL;
+}
+
+// Recurse down the left branch to find the minimum value under this node.
+// Used as part of the remove process and as a general utility.
+NodeData *subTreeMin (BstNode *thisNode) {
+	// TODO: Not Implemented
+	return NULL;
+}
+
+// Begins the recursion to find the tree's minimum value.
+NodeData *treeMin (Bst *thisTree) {
+	// TODO: Not Implemented
+	return NULL;
+}
+
+// Recursively traverses in order while adding to the array.
+// The return value is the current index to write to.
+int subTreeToArray (BstNode *thisNode, NodeData **inProgress, int index) {
+	// TODO: Not Implemented
+	return 0;
+}
+
+// Returns the tree in order as an array of NodeData pointers.
+NodeData **treeToArray (Bst *thisTree) {
+	// TODO: Not Implemented
+	return NULL;
+}
+
 // Recursively searches for key. If found, calls NodeData's customOnInsertExisting, else creates a new node in correct place.
 // True means key was new, false means it wasn't.
 // Coming soon: Keeps tree balanced by performing rotations as needed.
@@ -158,6 +197,7 @@ void __unused treeFPrint (FILE *fp, Bst *thisTree) {
 		fprintf(fp, "The tree is empty.\n");
 	}
 }\
+
 
 // Recursively prints relationships between this node and it's children as part of transforming to mathematica's structure.
 void subTreeToMathematica (BstNode *thisNode) {

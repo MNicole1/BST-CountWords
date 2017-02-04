@@ -36,6 +36,18 @@ bool subTreeInsert (BstNode *thisNode, Key *testKey);
 
 bool treeInsert (Bst *thisTree, Key *testKey);
 
+NodeData *subTreeMax (BstNode *thisNode);
+
+NodeData *treeMax (Bst *thisTree);
+
+NodeData *subTreeMin (BstNode *thisNode);
+
+NodeData *treeMin (Bst *thisTree);
+
+int subTreeToArray(BstNode *thisNode, NodeData **inProgress, int index);
+
+NodeData **treeToArray (Bst *thisTree);
+
 void subTreeDebug (BstNode *thisNode, int depth);
 
 void __unused treeDebug (Bst *thisTree);
