@@ -25,16 +25,26 @@ char *getWord (FILE *filePointer) {
 
 int main (int argc, char *argv[]) {
 
-//	if (argc <= 1) {
-//		// Literals next to each other are effectively concatenated.
-//		printf("\nUsage: BST_CountWords <file_suffix>\n"
-//					   "The argument file_suffix specifies which input/output pair to use.\n"
-//					   "It is inserted into the file name in place of the X in 'inputX.txt' and 'outputX.txt'\n");
-//		return 1;
-//	}
+	if (argc <= 1) {
+		// Literals next to each other are effectively concatenated.
+		printf("\nUsage: BST_CountWords <file_suffix>\n"
+					   "The argument file_suffix specifies which input/output pair to use.\n"
+					   "It is inserted into the file name in place of the X in 'inputX.txt' and 'outputX.txt'\n");
+		return 1;
+	}
 
-	char *inputFileName = "words.txt";
-	char *outputFileName = "myout.txt";
+	if (strlen(argv[1]) > 4) {
+		printf("file_suffix can only be at most 4 characters long.");
+		return 1;
+	}
+
+	char *inputPrefix = "input";
+	char *inputFileName = (char *)malloc(strlen(inputPrefix) + 9);
+	sprintf(inputFileName, "%s%s.txt", inputPrefix, argv[1]);
+
+	char *outputPrefix = "myoutput";
+	char *outputFileName = (char *)malloc(strlen(outputPrefix) + 9);
+	sprintf(outputFileName, "%s%s.txt", outputPrefix, argv[1]);
 
 	Bst *wordTree = newBst();
 
@@ -48,7 +58,6 @@ int main (int argc, char *argv[]) {
 
 	FILE *outputFile = fopen(outputFileName, "w+");
 
-	fprintf(outputFile, "Word Counts:\n");
 	treePrint(outputFile, wordTree);
 	fclose(outputFile);
 
