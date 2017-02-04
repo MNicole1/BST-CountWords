@@ -57,35 +57,42 @@ void treeDestroy (Bst *thisNode) {
 }
 
 // Recursively searches for a word. if found increments the node's count, if not adds new node in correct place.
-void subTreeInsert (BstNode *thisNode, Key *testKey) {
+bool subTreeInsert (BstNode *thisNode, Key *testKey) {
 	int compared = customComparer(thisNode->data, testKey);
 
 	if (compared < 0) {
 		// insert left
 		if (thisNode->left == NULL) {
 			thisNode->left = newBstNode(testKey);
+			return true;
 		} else {
-			subTreeInsert(thisNode->left, testKey);
+			return subTreeInsert(thisNode->left, testKey);
 		}
 	} else if (compared > 0) {
 		// insert right
 		if (thisNode->right == NULL) {
 			thisNode->right = newBstNode(testKey);
+			return true;
 		} else {
-			subTreeInsert(thisNode->right, testKey);
+			return subTreeInsert(thisNode->right, testKey);
 		}
 	} else { // if (compared == 0)
 		customOnInsertExisting(thisNode->data);
+		return false;
 	}
 }
 
-void treeInsert (Bst *thisTree, Key *testKey) {
+bool treeInsert (Bst *thisTree, Key *testKey) {
 	if (thisTree->rootNode == NULL) {
 		thisTree->rootNode = newBstNode(testKey);
-		thisTree->count = 1;
+		thisTree->size = 1;
+		return true;
 	} else {
-		subTreeInsert(thisTree->rootNode, testKey);
-		thisTree->count++;
+		bool isNew = subTreeInsert(thisTree->rootNode, testKey);
+		if (isNew) {
+			thisTree->size++;
+		}
+		return isNew;
 	}
 }
 

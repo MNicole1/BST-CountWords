@@ -16,7 +16,7 @@ typedef struct bstNodeType {
 // Keeps track of root of tree, allows for root to be included in rotations.
 typedef struct bstType {
 	BstNode *rootNode;
-	int count;
+	int size;
 } Bst;
 
 // Functions ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -31,9 +31,9 @@ void subTreeDestroy (BstNode *thisNode);
 
 void treeDestroy (Bst *thisNode);
 
-void subTreeInsert (BstNode *thisNode, Key *testKey);
+bool subTreeInsert (BstNode *thisNode, Key *testKey);
 
-void treeInsert (Bst *thisTree, Key *testKey);
+bool treeInsert (Bst *thisTree, Key *testKey);
 
 void subTreeDebug (BstNode *thisNode, int depth);
 
