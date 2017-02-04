@@ -19,7 +19,7 @@ int main () {
 	treeInsert(wordTree, "allison");
 	treeInsert(wordTree, "zain");
 	treeDebug(wordTree);
-	treePrint(wordTree);
+	treePrint(stdout, wordTree);
 	treeDestroy(wordTree);
 
 	// Test case 2, should produce a right skewed tree
@@ -35,7 +35,7 @@ int main () {
 	treeInsert(wordTree2, "trever");
 	treeInsert(wordTree2, "zain");
 	treeDebug(wordTree2);
-	treePrint(wordTree2);
+	treePrint(stdout, wordTree2);
 	treeDestroy(wordTree2);
 
 	// Test case 3, should produce a left skewed tree
@@ -51,7 +51,7 @@ int main () {
 	treeInsert(wordTree3, "donna");
 	treeInsert(wordTree3, "allison");
 	treeDebug(wordTree3);
-	treePrint(wordTree3);
+	treePrint(stdout, wordTree3);
 	treeDestroy(wordTree3);
 
 	// Test case 4, from assignment
@@ -74,14 +74,14 @@ int main () {
 	treeInsert(wordTree4, "their");
 	treeInsert(wordTree4, "party");
 	treeDebug(wordTree4);
-	treePrint(wordTree4);
+	treePrint(stdout, wordTree4);
 	treeDestroy(wordTree4);
 
 	// Test case 5, empty tree
 	printf("\nCase 5: An empty tree.\n");
 	Bst *wordTree5 = newBst();
 	treeDebug(wordTree5);
-	treePrint(wordTree5);
+	treePrint(stdout, wordTree5);
 	treeDestroy(wordTree5);
 
 	return (0);

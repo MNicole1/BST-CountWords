@@ -23,22 +23,35 @@ char *getWord (FILE *filePointer) {
 	return strdup(thisWord); // strdup mallocs a string for me, I'll need to free it later
 }
 
-int main () {
-	// words.txt has 100 unique words.
-	// there are a total of 145 word occurrences.
-	// the most times any word shows up is 4.
-	Bst *wordTree = newBst();
-	FILE *wordFile = fopen("words.txt", "r");
+int main (int argc, char *argv[]) {
 
+//	if (argc <= 1) {
+//		// Literals next to each other are effectively concatenated.
+//		printf("\nUsage: BST_CountWords <file_suffix>\n"
+//					   "The argument file_suffix specifies which input/output pair to use.\n"
+//					   "It is inserted into the file name in place of the X in 'inputX.txt' and 'outputX.txt'\n");
+//		return 1;
+//	}
+
+	char *inputFileName = "words.txt";
+	char *outputFileName = "myout.txt";
+
+	Bst *wordTree = newBst();
+
+	FILE *inputFile = fopen(inputFileName, "r");
 	char *word;
-	while (word = getWord(wordFile)) {
+	while (word = getWord(inputFile)) {
 		treeInsert(wordTree, word);
 		free(word); // freeing the extra word that's been malloced in getWord.
 	}
-	fclose(wordFile);
+	fclose(inputFile);
 
-	printf("\nWord Counts:\n");
-	treePrint(wordTree);
+	FILE *outputFile = fopen(outputFileName, "w+");
+
+	fprintf(outputFile, "Word Counts:\n");
+	treePrint(outputFile, wordTree);
+	fclose(outputFile);
+
 	treeDestroy(wordTree);
 
 	return (0);

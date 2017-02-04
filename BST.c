@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include "BST.h"
 
 // TODO: New Comments for each function to account for updated functionality
@@ -157,25 +158,25 @@ void treeDebug (Bst *thisTree) {
 	printf("\n");
 }
 
-void subTreePrint (BstNode *thisNode) {
+void subTreePrint (FILE *fp, BstNode *thisNode) {
 	if (thisNode->left != NULL) {
-		subTreePrint(thisNode->left);
+		subTreePrint(fp, thisNode->left);
 	}
 
 	char *temp = nodeDataToString(thisNode->data);
-	printf("%s\n", temp);
+	fprintf(fp, "%s\n", temp);
 	free(temp); // freeing the extra word that's been malloced in nodeDataToString.
 
 	if (thisNode->right != NULL) {
-		subTreePrint(thisNode->right);
+		subTreePrint(fp, thisNode->right);
 	}
 }
 
-void treePrint (Bst *thisTree) {
+void treePrint (FILE *fp, Bst *thisTree) {
 	if (thisTree->rootNode != NULL) {
-		subTreePrint(thisTree->rootNode);
+		subTreePrint(fp, thisTree->rootNode);
 	} else {
-		printf("There were no words given.");
+		fprintf(fp, "There were no words given.");
 	}
 	printf("\n");
 }\

@@ -1,7 +1,10 @@
+#include <stdbool.h>
+
 #ifndef BST_MOSTCOMMONWORD_BST_H
 #define BST_MOSTCOMMONWORD_BST_He
 
 // TODO: New Comments for each function.
+// TODO: Migrate NodeData def and functions to NodeData.(c|h). Anything that needs changing to change the data type of the tree.
 
 // Types and/or Structures ———————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -60,9 +63,9 @@ void subTreeDebug (BstNode *thisNode, int depth);
 
 void treeDebug (Bst *thisTree);
 
-void subTreePrint (BstNode *thisNode);
+void subTreePrint (FILE *fp, BstNode *thisNode);
 
-void treePrint (Bst *thisTree);
+void treePrint (FILE *fp, Bst *thisTree);
 
 void subTreeToMathematica (BstNode *thisNode);
 
