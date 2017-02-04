@@ -1,25 +1,28 @@
+/*
+ * This file and the associated C file have all of the data type specific code.
+ * Change these to change the type of tree.
+ */
+
 #ifndef MARCO_BST_NODE_DATA_H
 #define MARCO_BST_NODE_DATA_H
 
 // Types and/or Structures ————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-// change this between data types
-typedef char Key;
+typedef char Key; // This tree is indexed by strings.
 
 // Stores the custom data for this version of BST
-// change this between data types
 typedef struct nodeDataType {
-	Key *word;
-	int count;
+	Key *word; // The keys are the words we are counting
+	int count; // We want to know how many times we encounter each word
 } NodeData;
 
 // Functions ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 NodeData *newNodeData (Key *key);
 
-NodeData *copyNodeData (NodeData *toCopy);
+NodeData __unused *copyNodeData (NodeData *toCopy);
 
-int customComparer (const NodeData *nodeData, const Key *key);
+int customComparer (const Key *key, const NodeData *nodeData);
 
 void customOnInsertExisting (NodeData *thisNodeData);
 

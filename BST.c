@@ -4,22 +4,22 @@
 #include "BST.h"
 #include "BSTNodeData.h"
 
-// TODO: New Comments for each function to account for updated functionality
 // TODO: Implement rotation on insert to allow for self balancing trees.
 // TODO: Create remove() functions for a more complete bin tree implementation.
 // TODO: Create search() functions for a more complete bin tree implementation.
-// TODO: Make subTree insert() & remove() boolean for if truly inserted or not. this is to maintain good counts.
 // TODO: Add treeToArray() and subTreeToArray() functions.
 
+// Constructor for Bst, sets default values.
 Bst *newBst () {
-	Bst *root = (Bst *)malloc(sizeof(Bst));
+	Bst *tree = (Bst *)malloc(sizeof(Bst));
 
-	root->rootNode = NULL;
+	tree->rootNode = NULL;
+	tree->size = 0;
 
-	return root;
+	return tree;
 }
 
-// Initializes new tree node with newKey for key
+// Constructor for BstNode, sets default values for branch pointers & passes key for NodeData construction.
 BstNode *newBstNode (Key *newKey) {
 	BstNode *newNode = (BstNode *)malloc(sizeof(BstNode));
 
@@ -30,12 +30,13 @@ BstNode *newBstNode (Key *newKey) {
 	return newNode;
 }
 
+// Destroys this node, for use both with remove (as a leaf) and as part of finalizing the tree.
 void nodeDestroy (BstNode *thisNode) {
 	nodeDataDestroy(thisNode->data);
 	free(thisNode);
 }
 
-// Recursively destroys the subtree under this node as well as this node.
+// Recursively destroys the subtree under this node as well as this node, for use as part of finalizing the tree.
 void subTreeDestroy (BstNode *thisNode) {
 	if (thisNode->left != NULL) {
 		subTreeDestroy(thisNode->left);
@@ -48,17 +49,19 @@ void subTreeDestroy (BstNode *thisNode) {
 	nodeDestroy(thisNode);
 }
 
-// Starts the recursive process
-void treeDestroy (Bst *thisNode) {
-	if (thisNode->rootNode != NULL) {
-		subTreeDestroy(thisNode->rootNode);
+// Starts the recursive destruction process. Finalizes the tree, completely freeing it.
+void treeDestroy (Bst *thisTree) {
+	if (thisTree->rootNode != NULL) {
+		subTreeDestroy(thisTree->rootNode);
 	}
-	free(thisNode);
+	free(thisTree);
 }
 
-// Recursively searches for a word. if found increments the node's count, if not adds new node in correct place.
+// Recursively searches for key. If found, calls NodeData's customOnInsertExisting, else creates a new node in correct place.
+// True means key was new, false means it wasn't.
+// Coming soon: Keeps tree balanced by performing rotations as needed.
 bool subTreeInsert (BstNode *thisNode, Key *testKey) {
-	int compared = customComparer(thisNode->data, testKey);
+	int compared = customComparer(testKey, thisNode->data);
 
 	if (compared < 0) {
 		// insert left
@@ -77,11 +80,12 @@ bool subTreeInsert (BstNode *thisNode, Key *testKey) {
 			return subTreeInsert(thisNode->right, testKey);
 		}
 	} else { // if (compared == 0)
-		customOnInsertExisting(thisNode->data);
+		customOnInsertExisting(thisNode->data); // This call may do nothing.
 		return false;
 	}
 }
 
+// Starts recursive insert process. Increments size correctly.
 bool treeInsert (Bst *thisTree, Key *testKey) {
 	if (thisTree->rootNode == NULL) {
 		thisTree->rootNode = newBstNode(testKey);
@@ -96,7 +100,9 @@ bool treeInsert (Bst *thisTree, Key *testKey) {
 	}
 }
 
-// Recursive in-order traversal of tree. prints some extra information about tree structure
+// Recursive in-order traversal of tree.
+// Prints diagnostic information about tree structure.
+// Note that this is unreadable on larger trees, use mathematica for that.
 void subTreeDebug (BstNode *thisNode, int depth) {
 	if (thisNode->left != NULL) {
 		printf("(");
@@ -115,16 +121,20 @@ void subTreeDebug (BstNode *thisNode, int depth) {
 	}
 }
 
-// Initiates recursive printing.
-void treeDebug (Bst *thisTree) {
+// Initiates recursive in-order traversal of tree.
+// Prints diagnostic information about tree structure.
+// Note that this is unreadable on larger trees, use mathematica for that.
+// Note that this is an extra diagnostic and may go unused.
+void __unused treeDebug (Bst *thisTree) {
 	if (thisTree->rootNode != NULL) {
 		subTreeDebug(thisTree->rootNode, 0);
 	} else {
-		printf("Tree is empty.");
+		printf("The tree is empty");
 	}
 	printf("\n");
 }
 
+// Recursively prints an in order traversal of the tree to a file (or stdio).
 void subTreeFPrint (FILE *fp, BstNode *thisNode) {
 	if (thisNode->left != NULL) {
 		subTreeFPrint(fp, thisNode->left);
@@ -139,16 +149,17 @@ void subTreeFPrint (FILE *fp, BstNode *thisNode) {
 	}
 }
 
-void treeFPrint (FILE *fp, Bst *thisTree) {
+// Initiates recursive printing in order traversal of the tree to a file (or stdio).
+// Note, may go unused if tree is only for internal utility.
+void __unused treeFPrint (FILE *fp, Bst *thisTree) {
 	if (thisTree->rootNode != NULL) {
 		subTreeFPrint(fp, thisTree->rootNode);
 	} else {
-		fprintf(fp, "There were no words given.");
+		fprintf(fp, "The tree is empty.\n");
 	}
-	printf("\n");
 }\
 
-
+// Recursively prints relationships between this node and it's children as part of transforming to mathematica's structure.
 void subTreeToMathematica (BstNode *thisNode) {
 	if (thisNode->left != NULL) {
 		char *temp1 = nodeDataKeyToString(thisNode->data), *temp2 = nodeDataKeyToString(thisNode->left->data);
@@ -167,7 +178,9 @@ void subTreeToMathematica (BstNode *thisNode) {
 	}
 }
 
-void treeToMathematica (Bst *thisTree) {
+// Transforms this tree's structure into a format that can be executed in mathematica. Prints the function/data to stdio.
+// Note that this is an extra diagnostic and may go unused.
+void __unused treeToMathematica (Bst *thisTree) {
 	if (thisTree->rootNode != NULL) {
 		char *temp = nodeDataKeyToString(thisTree->rootNode->data);
 		printf("TreePlot[{root -> %s, ", temp);
@@ -175,7 +188,7 @@ void treeToMathematica (Bst *thisTree) {
 		subTreeToMathematica(thisTree->rootNode);
 		printf("}, Automatic, root, VertexLabeling -> True, ImageSize -> Full, AspectRatio -> Automatic]");
 	} else {
-		printf("There were no words given.");
+		printf("The tree is empty.");
 	}
 	printf("\n");
 }
