@@ -35,7 +35,7 @@ void nodeDestroy (BstNode *thisNode) {
 	free(thisNode);
 }
 
-// Recursively destories the subtree under this node as well as this node.
+// Recursively destroys the subtree under this node as well as this node.
 void subTreeDestroy (BstNode *thisNode) {
 	if (thisNode->left != NULL) {
 		subTreeDestroy(thisNode->left);
@@ -118,9 +118,9 @@ void treeDebug (Bst *thisTree) {
 	printf("\n");
 }
 
-void subTreePrint (FILE *fp, BstNode *thisNode) {
+void subTreeFPrint (FILE *fp, BstNode *thisNode) {
 	if (thisNode->left != NULL) {
-		subTreePrint(fp, thisNode->left);
+		subTreeFPrint(fp, thisNode->left);
 	}
 
 	char *temp = nodeDataToString(thisNode->data);
@@ -128,13 +128,13 @@ void subTreePrint (FILE *fp, BstNode *thisNode) {
 	free(temp); // freeing the extra word that's been malloced in nodeDataToString.
 
 	if (thisNode->right != NULL) {
-		subTreePrint(fp, thisNode->right);
+		subTreeFPrint(fp, thisNode->right);
 	}
 }
 
-void treePrint (FILE *fp, Bst *thisTree) {
+void treeFPrint (FILE *fp, Bst *thisTree) {
 	if (thisTree->rootNode != NULL) {
-		subTreePrint(fp, thisTree->rootNode);
+		subTreeFPrint(fp, thisTree->rootNode);
 	} else {
 		fprintf(fp, "There were no words given.");
 	}

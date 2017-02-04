@@ -39,9 +39,9 @@ void subTreeDebug (BstNode *thisNode, int depth);
 
 void treeDebug (Bst *thisTree);
 
-void subTreePrint (FILE *fp, BstNode *thisNode);
+void subTreeFPrint (FILE *fp, BstNode *thisNode);
 
-void treePrint (FILE *fp, Bst *thisTree);
+void treeFPrint (FILE *fp, Bst *thisTree);
 
 void subTreeToMathematica (BstNode *thisNode);
 

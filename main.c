@@ -58,7 +58,7 @@ int main (int argc, char *argv[]) {
 
 	FILE *outputFile = fopen(outputFileName, "w+");
 
-	treePrint(outputFile, wordTree);
+	treeFPrint(outputFile, wordTree);
 	fclose(outputFile);
 
 	treeDestroy(wordTree);
