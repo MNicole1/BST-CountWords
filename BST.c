@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <stdbool.h>
 #include "BST.h"
+#include "BSTNodeData.h"
 
 // TODO: New Comments for each function to account for updated functionality
 // TODO: Implement rotation on insert to allow for self balancing trees.
@@ -10,48 +10,6 @@
 // TODO: Create search() functions for a more complete bin tree implementation.
 // TODO: Make subTree insert() & remove() boolean for if truly inserted or not. this is to maintain good counts.
 // TODO: Add treeToArray() and subTreeToArray() functions.
-
-int customComparer (const NodeData *nodeData, const Key *key) {
-	// change this between data types
-	return strcmp(key, nodeData->word);
-}
-
-void customOnInsertExisting (NodeData *thisNodeData) {
-	// change this between data types
-	thisNodeData->count++;
-}
-
-char *nodeDataKeyToString (NodeData *thisNodeData) {
-	// change this between data types
-	return strdup(thisNodeData->word); // strdup mallocs a string for me, I'll need to free it later
-}
-
-char *nodeDataToString (NodeData *thisNodeData) {
-	// change this between data types
-	char *toString = (char *)malloc(strlen(thisNodeData->word) + 8); // NOTE: This can only do up to 3 digit numbers for count
-	sprintf(toString, "%s: %d", thisNodeData->word, thisNodeData->count);
-	return toString;
-}
-
-// Handles all custom deletion for node data type
-void nodeDataDestroy (NodeData *thisNodeData) {
-	// change this between data types
-	free(thisNodeData->word);
-
-	free(thisNodeData);
-}
-
-// Handles custom creation for node data type
-NodeData *newNodeData (Key *key) {
-	NodeData *newData = (NodeData *)malloc(sizeof(NodeData));
-
-	// change this between data types
-	newData->word = (char *)malloc(strlen(key) + 1);
-	strcpy(newData->word, key);
-	newData->count = 1;
-
-	return newData;
-}
 
 Bst *newBst () {
 	Bst *root = (Bst *)malloc(sizeof(Bst));

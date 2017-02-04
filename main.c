@@ -50,7 +50,7 @@ int main (int argc, char *argv[]) {
 
 	FILE *inputFile = fopen(inputFileName, "r");
 	char *word;
-	while (word = getWord(inputFile)) {
+	while ((word = getWord(inputFile))) {
 		treeInsert(wordTree, word);
 		free(word); // freeing the extra word that's been malloced in getWord.
 	}

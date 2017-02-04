@@ -1,22 +1,10 @@
 #include <stdbool.h>
+#include "BSTNodeData.h"
 
-#ifndef BST_MOSTCOMMONWORD_BST_H
-#define BST_MOSTCOMMONWORD_BST_He
+#ifndef MARCO_BST_H
+#define MARCO_BST_H
 
-// TODO: New Comments for each function.
-// TODO: Migrate NodeData def and functions to NodeData.(c|h). Anything that needs changing to change the data type of the tree.
-
-// Types and/or Structures ———————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-// change this between data types
-typedef char Key;
-
-// Stores the custom data for this version of BST
-// change this between data types
-typedef struct nodeDataType {
-	Key *word;
-	int count;
-} NodeData;
+// Types and/or Structures ————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 // Stores pointers to data and child branches
 typedef struct bstNodeType {
@@ -32,18 +20,6 @@ typedef struct bstType {
 } Bst;
 
 // Functions ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-int customComparer (const NodeData *nodeData, const Key *key);
-
-void customOnInsertExisting (NodeData *thisNodeData);
-
-char *nodeDataKeyToString (NodeData *thisNodeData);
-
-char *nodeDataToString (NodeData *thisNodeData);
-
-void nodeDataDestroy (NodeData *thisNodeData);
-
-NodeData *newNodeData (Key *key);
 
 Bst *newBst ();
 
@@ -71,4 +47,4 @@ void subTreeToMathematica (BstNode *thisNode);
 
 void treeToMathematica (Bst *thisTree);
 
-#endif //BST_MOSTCOMMONWORD_BST_H
+#endif // MARCO_BST_H
