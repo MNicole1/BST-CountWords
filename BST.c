@@ -7,7 +7,9 @@
 // TODO: New Comments for each function to account for updated functionality
 // TODO: Implement rotation on insert to allow for self balancing trees.
 // TODO: Create remove() functions for a more complete bin tree implementation.
+// TODO: Create search() functions for a more complete bin tree implementation.
 // TODO: Make subTree insert() & remove() boolean for if truly inserted or not. this is to maintain good counts.
+// TODO: Add treeToArray() and subTreeToArray() functions.
 
 int customComparer (const NodeData *nodeData, const Key *key) {
 	// change this between data types
