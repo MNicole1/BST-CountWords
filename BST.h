@@ -45,9 +45,13 @@ NodeData *subTreeMin (BstNode *thisNode);
 
 NodeData *treeMin (Bst *thisTree);
 
-int subTreeToArray(BstNode *thisNode, NodeData **inProgress, int index);
+int subTreeCount (BstNode *thisNode, int runningTotal);
 
-NodeData **treeToArray (Bst *thisTree);
+int treeCount (Bst *thisTree);
+
+int subTreeToArray (BstNode *thisNode, NodeData **arrayInProgress, int runningTotal);
+
+NodeData __unused **treeToArray (Bst *thisTree);
 
 void subTreeDebug (BstNode *thisNode, int depth);
 

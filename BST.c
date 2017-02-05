@@ -93,17 +93,50 @@ NodeData *treeMin (Bst *thisTree) {
 	return subTreeMin(thisTree->rootNode);
 }
 
+int subTreeCount (BstNode *thisNode, int runningTotal) {
+	if (thisNode->left != NULL) {
+		runningTotal = subTreeCount(thisNode->left, runningTotal);
+	}
+
+	runningTotal++;
+
+	if (thisNode->right != NULL) {
+		runningTotal = subTreeCount(thisNode->right, runningTotal);
+	}
+	return runningTotal;
+}
+
+int treeCount (Bst *thisTree) {
+	if (thisTree->rootNode == NULL) {
+		return 0;
+	}
+
+	return subTreeCount(thisTree->rootNode, 0);
+}
+
 // Recursively traverses in order while adding to the array.
-// The return value is the current index to write to.
-int subTreeToArray (BstNode *thisNode, NodeData **inProgress, int index) {
-	// TODO: Not Implemented
-	return 0;
+// return the running total. only increment it once per call.
+int subTreeToArray (BstNode *thisNode, NodeData **arrayInProgress, int runningTotal) {
+	if (thisNode->left != NULL) {
+		runningTotal = subTreeToArray(thisNode->left, arrayInProgress, runningTotal);
+	}
+
+	arrayInProgress[runningTotal++] = thisNode->data;
+
+	if (thisNode->right != NULL) {
+		runningTotal = subTreeToArray(thisNode->right, arrayInProgress, runningTotal);
+	}
+	return runningTotal;
 }
 
 // Returns the tree in order as an array of NodeData pointers.
-NodeData **treeToArray (Bst *thisTree) {
-	// TODO: Not Implemented
-	return NULL;
+NodeData __unused **treeToArray (Bst *thisTree) {
+	if (thisTree->rootNode ==  NULL) {
+		return NULL;
+	}
+	NodeData **array = (NodeData **)malloc(sizeof(NodeData) * thisTree->size);
+	subTreeToArray(thisTree->rootNode, array, 0);
+	return array;
 }
 
 // Recursively searches for key. If found, calls NodeData's customOnInsertExisting, else creates a new node in correct place.
