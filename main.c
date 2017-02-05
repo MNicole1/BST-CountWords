@@ -62,14 +62,14 @@ int main (int argc, char *argv[]) {
 		return 1;
 	}
 
-	char *inputFileName = argv[1];
+	Bst *wordTree = newBst();
 
+	char *inputFileName = argv[1];
 	char *outputFileName = getOutputFileName(inputFileName);
 	if (outputFileName == NULL) {
 		return 1;
 	}
 
-	Bst *wordTree = newBst();
 
 	FILE *inputFile = fopen(inputFileName, "r");
 	// TODO: handle missing file
@@ -82,19 +82,9 @@ int main (int argc, char *argv[]) {
 	fclose(inputFile);
 
 	FILE *outputFile = fopen(outputFileName, "w+");
-
 	treeFPrint(outputFile, wordTree);
 	fclose(outputFile);
 
-	NodeData **tempArray = treeToArray(wordTree);
-
-	NodeData *thisNode;
-	for (int i = 0; i < wordTree->size; i++) {
-		thisNode = tempArray[i];
-		printf("%s\n", nodeDataKeyToString(thisNode));
-	}
-
-	treeArrayDestroy(tempArray, wordTree->size);
 	treeDestroy(wordTree);
 
 	return (0);
