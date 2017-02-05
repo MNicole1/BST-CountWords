@@ -44,6 +44,11 @@ void customOnInsertExisting (NodeData *thisNodeData) {
 	thisNodeData->count++; // Re-encountered this word, increment it's count.
 }
 
+// Called when a key has been found.
+void customOnSearchFind (NodeData *thisNodeData) {
+	// TODO: Do anything on search find?
+}
+
 // Represents this node's key as a string. Useful when you only want the key.
 char *nodeDataKeyToString (NodeData *thisNodeData) {
 	return strdup(thisNodeData->word); // strdup mallocs a string for me, I'll need to free it later

@@ -190,14 +190,34 @@ bool treeInsert (Bst *thisTree, Key *testKey) {
 	}
 }
 
-NodeData *subTreeSearch (NodeData *thisNode, Key *testKey) {
-	// TODO: Not Implemented
-	return NULL;
+// Recursively searches for key. If found, calls NodeData's customOnSearchFind, else returns NULL.
+NodeData *subTreeSearch (BstNode *thisNode, Key *testKey) {
+	if (thisNode == NULL) {
+		return NULL;
+	}
+
+	int compared = customComparer(testKey, thisNode->data);
+
+	if (compared < 0) {
+		// search left
+		return subTreeSearch(thisNode->left, testKey);
+	} else if (compared > 0) {
+		// search right
+		return subTreeSearch(thisNode->right, testKey);
+	} else { // if (compared == 0)
+		customOnSearchFind(thisNode->data); // This call may do nothing.
+		return copyNodeData(thisNode->data);
+	}
 }
 
-NodeData *treeSearch (Bst *thisTree, Key *testKey) {
-	// TODO: Not Implemented
-	return NULL;
+// Starts recursive insert process.
+// Note that this creates a copy that will need to be freed by the caller.
+NodeData  __unused *treeSearch (Bst *thisTree, Key *testKey) {
+	if (thisTree->rootNode == NULL) {
+		return NULL;
+	}
+
+	return subTreeSearch(thisTree->rootNode, testKey);
 }
 
 // Recursive in-order traversal of tree.

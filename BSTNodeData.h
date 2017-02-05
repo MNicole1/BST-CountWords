@@ -26,6 +26,8 @@ int customComparer (const Key *key, const NodeData *nodeData);
 
 void customOnInsertExisting (NodeData *thisNodeData);
 
+void customOnSearchFind (NodeData *thisNodeData);
+
 char *nodeDataKeyToString (NodeData *thisNodeData);
 
 char *nodeDataToString (NodeData *thisNodeData);
