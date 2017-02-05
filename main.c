@@ -86,6 +86,15 @@ int main (int argc, char *argv[]) {
 	treeFPrint(outputFile, wordTree);
 	fclose(outputFile);
 
+	NodeData **tempArray = treeToArray(wordTree);
+
+	NodeData *thisNode;
+	for (int i = 0; i < wordTree->size; i++) {
+		thisNode = tempArray[i];
+		printf("%s\n", nodeDataKeyToString(thisNode));
+	}
+
+	treeArrayDestroy(tempArray, wordTree->size);
 	treeDestroy(wordTree);
 
 	return (0);
