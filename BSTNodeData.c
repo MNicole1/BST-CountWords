@@ -32,6 +32,11 @@ NodeData *nodeDataCopy (NodeData *thisNodeData) {
 	return newData;
 }
 
+// Returns the key for use in changing the key.
+Key *nodeDataGetKey (NodeData *thisNodeData) {
+	return thisNodeData->word;
+}
+
 // Called as part of the insert process.
 // Determines how a keys is greater than or less than the current node.
 // This is the core of the BST.

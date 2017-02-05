@@ -22,6 +22,8 @@ NodeData *newNodeData (Key *key);
 
 NodeData *nodeDataCopy (NodeData *thisNodeData);
 
+Key *nodeDataGetKey(NodeData *thisNodeData);
+
 int customComparer (const Key *key, const NodeData *nodeData);
 
 void customOnInsertExisting (NodeData *thisNodeData);
