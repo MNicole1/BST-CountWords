@@ -19,6 +19,8 @@ int main () {
 	treeInsert(wordTree, "allison");
 	treeInsert(wordTree, "zain");
 	treeDebug(wordTree);
+	NodeData *found = treeSearch(wordTree, "trever");
+	printf("Found \"trevor\": %s\n", nodeDataToString(found));
 	treeFPrint(stdout, wordTree);
 	treeDestroy(wordTree);
 
