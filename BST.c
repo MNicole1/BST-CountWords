@@ -4,10 +4,9 @@
 #include "BST.h"
 #include "BSTNodeData.h"
 
-// TODO: Implement rotation on insert to allow for self balancing trees.
+// TODO: Implement rotation on insert/remove to allow for self balancing trees.
 // TODO: Create remove() functions for a more complete bin tree implementation.
-// TODO: Create search() functions for a more complete bin tree implementation.
-// TODO: Add treeToArray() and subTreeToArray() functions.
+// TODO: "Methods" don't check of their "thisX" is null.
 
 // Constructor for Bst, sets default values.
 Bst *newBst () {
