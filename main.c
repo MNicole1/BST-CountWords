@@ -36,7 +36,7 @@ char *getOutputFileName (char *inputFileName) {
 
 	char *word_input = strstr(filePart, "input");
 
-	if (word_input != filePart) {
+	if (word_input != filePart) { // TODO: Check for .txt at the end
 		fprintf(stderr, "ERROR: Input file name must start with \"input\".\n");
 		return NULL;
 	}

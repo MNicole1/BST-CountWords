@@ -60,27 +60,37 @@ void treeDestroy (Bst *thisTree) {
 // Recurse down the right branch to find the maximum value under this node.
 // Used as part of the remove process and as a general utility.
 NodeData *subTreeMax (BstNode *thisNode) {
-	// TODO: Not Implemented
-	return NULL;
+	if (thisNode->right == NULL) { // Base Case, fully right
+		return thisNode->data;
+	}
+
+	return subTreeMax(thisNode->right);
 }
 
 // Begins the recursion to find the tree's maximum value.
 NodeData *treeMax (Bst *thisTree) {
-	// TODO: Not Implemented
-	return NULL;
+	if (thisTree->rootNode == NULL) {
+		return NULL;
+	}
+	return subTreeMax(thisTree->rootNode);
 }
 
 // Recurse down the left branch to find the minimum value under this node.
 // Used as part of the remove process and as a general utility.
 NodeData *subTreeMin (BstNode *thisNode) {
-	// TODO: Not Implemented
-	return NULL;
+	if (thisNode->left == NULL) { // Base Case, fully left
+		return thisNode->data;
+	}
+
+	return subTreeMin(thisNode->left);
 }
 
 // Begins the recursion to find the tree's minimum value.
 NodeData *treeMin (Bst *thisTree) {
-	// TODO: Not Implemented
-	return NULL;
+	if (thisTree->rootNode == NULL) {
+		return NULL;
+	}
+	return subTreeMin(thisTree->rootNode);
 }
 
 // Recursively traverses in order while adding to the array.

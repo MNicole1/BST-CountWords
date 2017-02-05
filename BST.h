@@ -1,8 +1,9 @@
+#ifndef MARCO_BST_H
+#define MARCO_BST_H
+
 #include <stdbool.h>
 #include "BSTNodeData.h"
 
-#ifndef MARCO_BST_H
-#define MARCO_BST_H
 
 // Types and/or Structures ————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
