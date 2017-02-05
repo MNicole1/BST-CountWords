@@ -128,7 +128,7 @@ int subTreeToArray (BstNode *thisNode, NodeData **arrayInProgress, int runningTo
 		runningTotal = subTreeToArray(thisNode->left, arrayInProgress, runningTotal);
 	}
 
-	arrayInProgress[runningTotal++] = copyNodeData(thisNode->data);
+	arrayInProgress[runningTotal++] = nodeDataCopy(thisNode->data);
 
 	if (thisNode->right != NULL) {
 		runningTotal = subTreeToArray(thisNode->right, arrayInProgress, runningTotal);
@@ -209,7 +209,7 @@ NodeData *subTreeSearch (BstNode *thisNode, Key *testKey) {
 		return subTreeSearch(thisNode->right, testKey);
 	} else { // if (compared == 0)
 		customOnSearchFind(thisNode->data); // This call may do nothing.
-		return copyNodeData(thisNode->data);
+		return nodeDataCopy(thisNode->data);
 	}
 }
 

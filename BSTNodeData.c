@@ -22,7 +22,7 @@ NodeData *newNodeData (Key *key) {
 }
 
 // Makes a copy of the current NodeData structure
-NodeData *copyNodeData (NodeData *thisNodeData) {
+NodeData *nodeDataCopy (NodeData *thisNodeData) {
 	NodeData *newData = (NodeData *)malloc(sizeof(NodeData));
 
 	newData->word = (char *)malloc(strlen(thisNodeData->word) + 1);
