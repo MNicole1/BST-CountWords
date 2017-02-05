@@ -190,6 +190,16 @@ bool treeInsert (Bst *thisTree, Key *testKey) {
 	}
 }
 
+NodeData *subTreeSearch (NodeData *thisNode, Key *testKey) {
+	// TODO: Not Implemented
+	return NULL;
+}
+
+NodeData *treeSearch (Bst *thisTree, Key *testKey) {
+	// TODO: Not Implemented
+	return NULL;
+}
+
 // Recursive in-order traversal of tree.
 // Prints diagnostic information about tree structure.
 // Note that this is unreadable on larger trees, use mathematica for that.
