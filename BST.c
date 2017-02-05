@@ -4,8 +4,8 @@
 #include "BST.h"
 #include "BSTNodeData.h"
 
-// TODO: Implement rotation on insert/remove to allow for self balancing trees.
 // TODO: Create remove() functions for a more complete bin tree implementation.
+// TODO: Implement rotation on insert/remove to allow for self balancing trees.
 // TODO: "Methods" don't check of their "thisX" is null.
 
 // Constructor for Bst, sets default values.
@@ -172,6 +172,8 @@ bool subTreeInsert (BstNode *thisNode, Key *testKey) {
 		customOnInsertExisting(thisNode->data); // This call may do nothing.
 		return false;
 	}
+
+	// TODO: Check Balance here.
 }
 
 // Starts recursive insert process. Increments size correctly.
@@ -187,6 +189,8 @@ bool treeInsert (Bst *thisTree, Key *testKey) {
 		}
 		return isNew;
 	}
+
+	// TODO: Check Balance here.
 }
 
 // Recursively searches for key. If found, calls NodeData's customOnSearchFind, else returns NULL.
@@ -209,7 +213,7 @@ NodeData *subTreeSearch (BstNode *thisNode, Key *testKey) {
 	}
 }
 
-// Starts recursive insert process.
+// Starts recursive search process.
 // Note that this creates a copy that will need to be freed by the caller.
 NodeData  __unused *treeSearch (Bst *thisTree, Key *testKey) {
 	if (thisTree->rootNode == NULL) {
@@ -217,6 +221,25 @@ NodeData  __unused *treeSearch (Bst *thisTree, Key *testKey) {
 	}
 
 	return subTreeSearch(thisTree->rootNode, testKey);
+}
+
+// Recursively searches for key. If found, there are a few cases, return a copy of the removed node data, else returns NULL.
+// Must operate from the parent of the found node.
+// Cases:
+// 1) Found node has no children. Easy, set parent's pointer to NULL and nodeDestroy() the found node.
+// 2) Node has 1 child. Easy, set parent's pointer to the child and nodeDestroy() the found node.
+// 3) Node has 2 children. Hard, Swap the data of this node and the next biggest (subTreeMin(thisNode->right)), recurse down right.
+//    * Eventually case 1 or 2 will be hit by further recursion.
+NodeData *subTreeRemove (BstNode *thisNode, Key *testKey) {
+	// TODO: Not Implemented
+	return NULL;
+}
+
+// Starts recursive removal process.
+// Note taht this creates a copy that will need to be freed by the caller.
+NodeData *treeRemove (Bst *thisTree, Key *testKey) {
+	// TODO: Not Implemented
+	return NULL;
 }
 
 // Recursive in-order traversal of tree.

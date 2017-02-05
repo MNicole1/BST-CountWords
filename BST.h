@@ -41,6 +41,10 @@ NodeData *subTreeSearch (BstNode *thisNode, Key *testKey);
 
 NodeData  __unused *treeSearch (Bst *thisTree, Key *testKey);
 
+NodeData *subTreeRemove (BstNode *thisNode, Key *testKey);
+
+NodeData *treeRemove (Bst *thisTree, Key *testKey);
+
 NodeData *subTreeMax (BstNode *thisNode);
 
 NodeData  __unused *treeMax (Bst *thisTree);
