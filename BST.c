@@ -68,7 +68,7 @@ NodeData *subTreeMax (BstNode *thisNode) {
 }
 
 // Begins the recursion to find the tree's maximum value.
-NodeData *treeMax (Bst *thisTree) {
+NodeData  __unused *treeMax (Bst *thisTree) {
 	if (thisTree->rootNode == NULL) {
 		return NULL;
 	}
@@ -86,42 +86,50 @@ NodeData *subTreeMin (BstNode *thisNode) {
 }
 
 // Begins the recursion to find the tree's minimum value.
-NodeData *treeMin (Bst *thisTree) {
+NodeData  __unused *treeMin (Bst *thisTree) {
 	if (thisTree->rootNode == NULL) {
 		return NULL;
 	}
 	return subTreeMin(thisTree->rootNode);
 }
 
-int subTreeCount (BstNode *thisNode, int runningTotal) {
-	if (thisNode->left != NULL) {
-		runningTotal = subTreeCount(thisNode->left, runningTotal);
+// Recursively counts nodes in this subtree.
+int subTreeCount (BstNode *thisNode) {
+	if (thisNode == NULL) {
+		return 0;
 	}
 
-	runningTotal++;
-
-	if (thisNode->right != NULL) {
-		runningTotal = subTreeCount(thisNode->right, runningTotal);
-	}
-	return runningTotal;
+	return subTreeCount(thisNode->left) + subTreeCount(thisNode->right) + 1;
 }
 
-int treeCount (Bst *thisTree) {
+// Recursively counts nodes in this tree.
+int __unused treeCount (Bst *thisTree) {
 	if (thisTree->rootNode == NULL) {
 		return 0;
 	}
 
-	return subTreeCount(thisTree->rootNode, 0);
+	return subTreeCount(thisTree->rootNode);
+}
+
+// Destroys the array created below.
+void treeArrayDestroy (NodeData **array, int size) {
+	NodeData *thisNode;
+	for (int i = 0; i < size; i++) {
+		thisNode = array[i];
+		nodeDataDestroy(thisNode);
+	}
+	free(array);
 }
 
 // Recursively traverses in order while adding to the array.
 // return the running total. only increment it once per call.
+// This shouldn't be called anywhere but itself or treeToArray()
 int subTreeToArray (BstNode *thisNode, NodeData **arrayInProgress, int runningTotal) {
 	if (thisNode->left != NULL) {
 		runningTotal = subTreeToArray(thisNode->left, arrayInProgress, runningTotal);
 	}
 
-	arrayInProgress[runningTotal++] = thisNode->data;
+	arrayInProgress[runningTotal++] = copyNodeData(thisNode->data);
 
 	if (thisNode->right != NULL) {
 		runningTotal = subTreeToArray(thisNode->right, arrayInProgress, runningTotal);
@@ -129,9 +137,9 @@ int subTreeToArray (BstNode *thisNode, NodeData **arrayInProgress, int runningTo
 	return runningTotal;
 }
 
-// Returns the tree in order as an array of NodeData pointers.
+// Returns the tree in order as an array of NodeData pointers to copies of the node's data.
 NodeData __unused **treeToArray (Bst *thisTree) {
-	if (thisTree->rootNode ==  NULL) {
+	if (thisTree->rootNode == NULL) {
 		return NULL;
 	}
 	NodeData **array = (NodeData **)malloc(sizeof(NodeData) * thisTree->size);

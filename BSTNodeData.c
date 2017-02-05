@@ -21,10 +21,15 @@ NodeData *newNodeData (Key *key) {
 	return newData;
 }
 
-// Coming soon: This will get used as part of the process of removing a node.
-NodeData __unused *copyNodeData (NodeData *toCopy) {
-	// TODO: Not Implemented, as part of remove code.
-	return NULL;
+// Makes a copy of the current NodeData structure
+NodeData *copyNodeData (NodeData *thisNodeData) {
+	NodeData *newData = (NodeData *)malloc(sizeof(NodeData));
+
+	newData->word = (char *)malloc(strlen(thisNodeData->word) + 1);
+	strcpy(newData->word, thisNodeData->word);
+	newData->count = thisNodeData->count;
+
+	return newData;
 }
 
 // Called as part of the insert process.

@@ -20,7 +20,7 @@ typedef struct nodeDataType {
 
 NodeData *newNodeData (Key *key);
 
-NodeData __unused *copyNodeData (NodeData *toCopy);
+NodeData *copyNodeData (NodeData *thisNodeData);
 
 int customComparer (const Key *key, const NodeData *nodeData);
 

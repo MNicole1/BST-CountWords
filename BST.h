@@ -39,15 +39,17 @@ bool treeInsert (Bst *thisTree, Key *testKey);
 
 NodeData *subTreeMax (BstNode *thisNode);
 
-NodeData *treeMax (Bst *thisTree);
+NodeData  __unused *treeMax (Bst *thisTree);
 
 NodeData *subTreeMin (BstNode *thisNode);
 
-NodeData *treeMin (Bst *thisTree);
+NodeData  __unused *treeMin (Bst *thisTree);
 
-int subTreeCount (BstNode *thisNode, int runningTotal);
+int subTreeCount (BstNode *thisNode);
 
-int treeCount (Bst *thisTree);
+int __unused treeCount (Bst *thisTree);
+
+void treeArrayDestroy (NodeData **array, int size);
 
 int subTreeToArray (BstNode *thisNode, NodeData **arrayInProgress, int runningTotal);
 
