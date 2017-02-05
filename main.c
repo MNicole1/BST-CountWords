@@ -1,7 +1,14 @@
+#if defined(WIN32) || defined(_WIN32) || defined(__CYGWIN__) // if in a windows environment path separator is '\'
+#define PATH_SEPARATOR "\\"
+#else
+#define PATH_SEPARATOR "/"
+#endif
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <libgen.h>
 #include "BST.h"
 
 char *getWord (FILE *filePointer) {
@@ -23,32 +30,50 @@ char *getWord (FILE *filePointer) {
 	return strdup(thisWord); // strdup mallocs a string for me, I'll need to free it later
 }
 
+char *getOutputFileName (char *inputFileName) {
+	char *filePart = basename(inputFileName);
+	char *pathPart = dirname(inputFileName);
+
+	char *word_input = strstr(filePart, "input");
+
+	if (word_input != filePart) {
+		fprintf(stderr, "ERROR: Input file name must start with \"input\".\n");
+		return NULL;
+	}
+
+	size_t endOfWord_input = filePart - word_input + 5;
+	char *indexAndFileExtension = filePart + endOfWord_input;
+
+	// "myoutput" is 3 longer than "input" + 1 more for '\0' + 1 more for a possible '.' + 1 more for '/'
+	char *outputFileName = (char *)malloc(strlen(inputFileName) + 6);
+	sprintf(outputFileName, "%s%smyoutput%s", pathPart, PATH_SEPARATOR, indexAndFileExtension);
+	return outputFileName;
+}
+
 int main (int argc, char *argv[]) {
 
 	if (argc <= 1) {
 		// Literals next to each other are effectively concatenated.
-		printf("\nUsage: BST_CountWords <file_suffix>\n"
-					   "The argument file_suffix specifies which input/output pair to use.\n"
-					   "It is inserted into the file name in place of the X in 'inputX.txt' and 'outputX.txt'\n");
+		printf("\nUsage: BST_CountWords <path/of/input_file>\n"
+					   "The file name should be input*.txt where the expansion of * will be the index.\n"
+					   "This same index will appear in the output file \"myoutput*.txt\".\n"
+					   "You can pass a file name alone or a path to a file.\n"
+					   "Output will be in the same directory as input.\n");
 		return 1;
 	}
 
-	if (strlen(argv[1]) > 4) {
-		printf("file_suffix can only be at most 4 characters long.");
+	char *inputFileName = argv[1];
+
+	char *outputFileName = getOutputFileName(inputFileName);
+	if (outputFileName == NULL) {
 		return 1;
 	}
-
-	char *inputPrefix = "input";
-	char *inputFileName = (char *)malloc(strlen(inputPrefix) + 9);
-	sprintf(inputFileName, "%s%s.txt", inputPrefix, argv[1]);
-
-	char *outputPrefix = "myoutput";
-	char *outputFileName = (char *)malloc(strlen(outputPrefix) + 9);
-	sprintf(outputFileName, "%s%s.txt", outputPrefix, argv[1]);
 
 	Bst *wordTree = newBst();
 
 	FILE *inputFile = fopen(inputFileName, "r");
+	// TODO: handle missing file
+
 	char *word;
 	while ((word = getWord(inputFile))) {
 		treeInsert(wordTree, word);
