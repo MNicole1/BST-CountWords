@@ -95,13 +95,85 @@ int __unused treeHeight (Bst *thisTree) {
 /// Rotates the subtree about this node.
 /// Updates this node's parent
 void subTreeRotate (BstNode *thisNode, bool rotateLeft, BstNode *parentNode) {
-	// TODO: Not Implemented
 	bool isLeftChild = thisNode == parentNode->left;
+
+	if (thisNode == NULL) {
+		return;
+	}
+
+	if (rotateLeft) {
+		// This node (p) gets replaced by its right node (q) and becomes that node's new left.
+		// The old right node's old left (beta) becomes this node's new right.
+		BstNode *p = thisNode;
+		BstNode *q = thisNode->right;
+		if (q == NULL) {
+			return;
+		}
+		BstNode *beta = q->left;
+
+		p->right = beta;
+		q->left = p;
+		if (isLeftChild) {
+			parentNode->left = q;
+		} else {
+			parentNode->right = q;
+		}
+	} else {
+		// This node (p) gets replaced by its left node (q) and becomes that node's new right.
+		// The old left node's old right (beta) becomes this node's new left.
+		BstNode *p = thisNode;
+		BstNode *q = thisNode->left;
+		if (q == NULL) {
+			return;
+		}
+		BstNode *beta = q->right;
+
+		p->left = beta;
+		q->right = p;
+		if (isLeftChild) {
+			parentNode->left = q;
+		} else {
+			parentNode->right = q;
+		}
+	}
 }
 
 /// Rotates the tree about it's root.
 void treeRotate (Bst *thisTree, bool rotateLeft) {
-	// TODO: Not Implemented
+	BstNode *rootNode = thisTree->rootNode;
+
+	if (rootNode == NULL) {
+		return;
+	}
+
+	if (rotateLeft) {
+		// This node (p) gets replaced by its right node (q) and becomes that node's new left.
+		// The old right node's old left (beta) becomes this node's new right.
+		BstNode *p = rootNode;
+		BstNode *q = rootNode->right;
+		if (q == NULL) {
+			return;
+		}
+		BstNode *beta = q->left;
+
+		p->right = beta;
+		q->left = p;
+		thisTree->rootNode = q;
+	} else {
+		// This node (p) gets replaced by its left node (q) and becomes that node's new right.
+		// The old left node's old right (beta) becomes this node's new left.
+		BstNode *p = rootNode;
+		BstNode *q = rootNode->left;
+		if (q == NULL) {
+			return;
+		}
+		BstNode *beta = q->right;
+
+		p->left = beta;
+		q->right = p;
+		thisTree->rootNode = q;
+	}
+
 }
 
 /// Recursively finds the maximum value in this subtree.
