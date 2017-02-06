@@ -10,7 +10,6 @@
 #include "BST.h"
 #include "BSTNodeData.h"
 
-// TODO: Create remove() functions for a more complete bin tree implementation.
 // TODO: Implement rotation on insert/remove to allow for self balancing trees.
 // TODO: "Methods" don't check of their "thisX" is null.
 
@@ -91,6 +90,18 @@ int __unused treeHeight (Bst *thisTree) {
 	}
 
 	return subTreeHeight(thisTree->rootNode);
+}
+
+/// Rotates the subtree about this node.
+/// Updates this node's parent
+void subTreeRotate (BstNode *thisNode, bool rotateLeft, BstNode *parentNode) {
+	// TODO: Not Implemented
+	bool isLeftChild = thisNode == parentNode->left;
+}
+
+/// Rotates the tree about it's root.
+void treeRotate (Bst *thisTree, bool rotateLeft) {
+	// TODO: Not Implemented
 }
 
 /// Recursively finds the maximum value in this subtree.

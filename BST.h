@@ -37,6 +37,10 @@ int subTreeHeight (BstNode *thisNode);
 
 int __unused treeHeight (Bst *thisTree);
 
+void subTreeRotate (BstNode *thisNode, bool rotateLeft, BstNode *parentNode);
+
+void treeRotate (Bst *thisTree, bool rotateLeft);
+
 bool subTreeInsert (BstNode *thisNode, Key *testKey);
 
 bool treeInsert (Bst *thisTree, Key *testKey);
