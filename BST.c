@@ -178,12 +178,24 @@ void treeRotate (Bst *thisTree, bool rotateLeft) {
 
 /// Checks balance of subtree and performs rotation if needed.
 void subTreeCheckBalance (BstNode *thisNode, BstNode *parentNode) {
-	// TODO: Not Implemented
+	int balanceFactor = subTreeHeight(thisNode->right) - subTreeHeight(thisNode->left);
+	if (balanceFactor < -1) { // left heavy
+		subTreeRotate(thisNode, ROT_RIGHT, parentNode);
+	} else if (balanceFactor > 1) { // right heavy
+		subTreeRotate(thisNode, ROT_LEFT, parentNode);
+	}
 }
 
 /// Checks balance of tree and performs rotation if needed.
 void treeCheckBalance (Bst *thisTree) {
-	// TODO: Not Implemented
+	BstNode *rootNode = thisTree->rootNode;
+
+	int balanceFactor = subTreeHeight(rootNode->right) - subTreeHeight(rootNode->left);
+	if (balanceFactor < -1) { // left heavy
+		treeRotate(thisTree, ROT_RIGHT);
+	} else if (balanceFactor > 1) { // right heavy
+		treeRotate(thisTree, ROT_LEFT);
+	}
 }
 
 /// Recursively finds the maximum value in this subtree.
