@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include "BSTNodeData.h"
 
+#define ROT_LEFT true
+#define ROT_RIGHT false
 
 // Types and/or Structures ————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 

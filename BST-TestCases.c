@@ -39,7 +39,11 @@ int main () {
 	treeInsert(wordTree2, "trever");
 	treeInsert(wordTree2, "zain");
 	treeDebug(wordTree2);
-	NodeData *removed1 = treeRemove(wordTree, "allison");
+	for (int i = 0; i < wordTree2->size; i++) {
+		treeToMathematica(wordTree2);
+		treeRotate(wordTree2, ROT_LEFT);
+	}
+	NodeData *removed1 = treeRemove(wordTree2, "allison");
 	treeFPrint(stdout, wordTree2);
 	treeDestroy(wordTree2);
 
@@ -56,7 +60,11 @@ int main () {
 	treeInsert(wordTree3, "donna");
 	treeInsert(wordTree3, "allison");
 	treeDebug(wordTree3);
-	NodeData *removed2 = treeRemove(wordTree, "mary");
+	for (int i = 0; i < wordTree3->size; i++) {
+		treeToMathematica(wordTree3);
+		treeRotate(wordTree3, ROT_RIGHT);
+	}
+	NodeData *removed2 = treeRemove(wordTree3, "mary");
 	treeFPrint(stdout, wordTree3);
 	treeDestroy(wordTree3);
 
@@ -80,8 +88,21 @@ int main () {
 	treeInsert(wordTree4, "their");
 	treeInsert(wordTree4, "party");
 	treeDebug(wordTree4);
-	NodeData *removed3 = treeRemove(wordTree, "wow");
+	NodeData *removed3 = treeRemove(wordTree4, "wow");
 	printf("Wow %s removed\n", (removed3 == NULL) ? "was not" : "was");
+	treeToMathematica(wordTree4);
+	treeRotate(wordTree4, ROT_LEFT);
+	treeToMathematica(wordTree4);
+	treeRotate(wordTree4, ROT_RIGHT);
+	treeToMathematica(wordTree4);
+	subTreeRotate(wordTree4->rootNode->right, ROT_LEFT, wordTree4->rootNode);
+	treeToMathematica(wordTree4);
+	subTreeRotate(wordTree4->rootNode->right, ROT_RIGHT, wordTree4->rootNode);
+	treeToMathematica(wordTree4);
+	subTreeRotate(wordTree4->rootNode->left, ROT_LEFT, wordTree4->rootNode);
+	treeToMathematica(wordTree4);
+	subTreeRotate(wordTree4->rootNode->left, ROT_RIGHT, wordTree4->rootNode);
+	treeToMathematica(wordTree4);
 	treeFPrint(stdout, wordTree4);
 	treeDestroy(wordTree4);
 
