@@ -21,6 +21,8 @@ int main () {
 	treeDebug(wordTree);
 	NodeData *found = treeSearch(wordTree, "trever");
 	printf("Found \"trevor\": %s\n", nodeDataToString(found));
+	NodeData *removed = treeRemove(wordTree, "julie");
+	printf("Removed \"julie\": %s\n", nodeDataToString(removed));
 	treeFPrint(stdout, wordTree);
 	treeDestroy(wordTree);
 
@@ -37,6 +39,7 @@ int main () {
 	treeInsert(wordTree2, "trever");
 	treeInsert(wordTree2, "zain");
 	treeDebug(wordTree2);
+	NodeData *removed1 = treeRemove(wordTree, "allison");
 	treeFPrint(stdout, wordTree2);
 	treeDestroy(wordTree2);
 
@@ -53,6 +56,7 @@ int main () {
 	treeInsert(wordTree3, "donna");
 	treeInsert(wordTree3, "allison");
 	treeDebug(wordTree3);
+	NodeData *removed2 = treeRemove(wordTree, "mary");
 	treeFPrint(stdout, wordTree3);
 	treeDestroy(wordTree3);
 
@@ -76,6 +80,8 @@ int main () {
 	treeInsert(wordTree4, "their");
 	treeInsert(wordTree4, "party");
 	treeDebug(wordTree4);
+	NodeData *removed3 = treeRemove(wordTree, "wow");
+	printf("Wow %s removed\n", (removed3 == NULL) ? "was not" : "was");
 	treeFPrint(stdout, wordTree4);
 	treeDestroy(wordTree4);
 
