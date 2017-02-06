@@ -27,7 +27,7 @@ int main () {
 	treeDestroy(wordTree);
 
 	// Test case 2, should produce a right skewed tree
-	printf("\nCase 2: Right only tree.\n");
+	printf("\nCase 2: Right only tree when unbalanced.\n");
 	Bst *wordTree2 = newBst();
 	treeInsert(wordTree2, "allison");
 	treeInsert(wordTree2, "donna");
@@ -39,16 +39,12 @@ int main () {
 	treeInsert(wordTree2, "trever");
 	treeInsert(wordTree2, "zain");
 	treeDebug(wordTree2);
-	for (int i = 0; i < wordTree2->size; i++) {
-		treeToMathematica(wordTree2);
-		treeRotate(wordTree2, ROT_LEFT);
-	}
 	NodeData *removed1 = treeRemove(wordTree2, "allison");
 	treeFPrint(stdout, wordTree2);
 	treeDestroy(wordTree2);
 
 	// Test case 3, should produce a left skewed tree
-	printf("\nCase 3: Left only tree.\n");
+	printf("\nCase 3: Left only tree when unbalanced.\n");
 	Bst *wordTree3 = newBst();
 	treeInsert(wordTree3, "zain");
 	treeInsert(wordTree3, "trever");
@@ -60,10 +56,6 @@ int main () {
 	treeInsert(wordTree3, "donna");
 	treeInsert(wordTree3, "allison");
 	treeDebug(wordTree3);
-	for (int i = 0; i < wordTree3->size; i++) {
-		treeToMathematica(wordTree3);
-		treeRotate(wordTree3, ROT_RIGHT);
-	}
 	NodeData *removed2 = treeRemove(wordTree3, "mary");
 	treeFPrint(stdout, wordTree3);
 	treeDestroy(wordTree3);
@@ -88,21 +80,9 @@ int main () {
 	treeInsert(wordTree4, "their");
 	treeInsert(wordTree4, "party");
 	treeDebug(wordTree4);
+	treeToMathematica(wordTree4);
 	NodeData *removed3 = treeRemove(wordTree4, "wow");
 	printf("Wow %s removed\n", (removed3 == NULL) ? "was not" : "was");
-	treeToMathematica(wordTree4);
-	treeRotate(wordTree4, ROT_LEFT);
-	treeToMathematica(wordTree4);
-	treeRotate(wordTree4, ROT_RIGHT);
-	treeToMathematica(wordTree4);
-	subTreeRotate(wordTree4->rootNode->right, ROT_LEFT, wordTree4->rootNode);
-	treeToMathematica(wordTree4);
-	subTreeRotate(wordTree4->rootNode->right, ROT_RIGHT, wordTree4->rootNode);
-	treeToMathematica(wordTree4);
-	subTreeRotate(wordTree4->rootNode->left, ROT_LEFT, wordTree4->rootNode);
-	treeToMathematica(wordTree4);
-	subTreeRotate(wordTree4->rootNode->left, ROT_RIGHT, wordTree4->rootNode);
-	treeToMathematica(wordTree4);
 	treeFPrint(stdout, wordTree4);
 	treeDestroy(wordTree4);
 
