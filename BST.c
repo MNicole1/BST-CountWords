@@ -7,8 +7,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "BST.h"
 #include "BSTNodeData.h"
+#include "BST.h"
 
 // TODO: Implement rotation on insert/remove to allow for self balancing trees.
 // TODO: "Methods" don't check of their "thisX" is null.
@@ -176,6 +176,16 @@ void treeRotate (Bst *thisTree, bool rotateLeft) {
 
 }
 
+/// Checks balance of subtree and performs rotation if needed.
+void subTreeCheckBalance (BstNode *thisNode, BstNode *parentNode) {
+	// TODO: Not Implemented
+}
+
+/// Checks balance of tree and performs rotation if needed.
+void treeCheckBalance (Bst *thisTree) {
+	// TODO: Not Implemented
+}
+
 /// Recursively finds the maximum value in this subtree.
 /// Recurses down the right branch to the rightmost item.
 NodeData *subTreeMax (BstNode *thisNode) {
@@ -281,7 +291,11 @@ bool subTreeInsert (BstNode *thisNode, Key *testKey) {
 			thisNode->left = newBstNode(testKey);
 			return true;
 		} else {
-			return subTreeInsert(thisNode->left, testKey);
+			bool didInsert = subTreeInsert(thisNode->left, testKey);
+			if (didInsert) {
+				subTreeCheckBalance(thisNode->left, thisNode);
+			}
+			return didInsert;
 		}
 	} else if (compared > 0) {
 		// insert right
@@ -289,14 +303,16 @@ bool subTreeInsert (BstNode *thisNode, Key *testKey) {
 			thisNode->right = newBstNode(testKey);
 			return true;
 		} else {
-			return subTreeInsert(thisNode->right, testKey);
+			bool didInsert = subTreeInsert(thisNode->right, testKey);
+			if (didInsert) {
+				subTreeCheckBalance(thisNode->right, thisNode);
+			}
+			return didInsert;
 		}
 	} else { // if (compared == 0)
 		customOnInsertExisting(thisNode->data); // This call may do nothing.
 		return false;
 	}
-
-	// TODO: Check Balance here.
 }
 
 /// Inserts new nodes into tree.
@@ -307,14 +323,13 @@ bool treeInsert (Bst *thisTree, Key *testKey) {
 		thisTree->size = 1;
 		return true;
 	} else {
-		bool isNew = subTreeInsert(thisTree->rootNode, testKey);
-		if (isNew) {
+		bool didInsert = subTreeInsert(thisTree->rootNode, testKey);
+		if (didInsert) {
 			thisTree->size++;
+			treeCheckBalance(thisTree);
 		}
-		return isNew;
+		return didInsert;
 	}
-
-	// TODO: Check Balance here.
 }
 
 /// Recursively searches subtree for key value. If found, calls NodeData's customOnSearchFind, else returns NULL.
@@ -348,15 +363,23 @@ NodeData  __unused *treeSearch (Bst *thisTree, Key *testKey) {
 }
 
 /// Recursively searches for key. If found, return a copy of the removed node data, else returns NULL.
-/// Must operate from the parent of the found node.
+/// Assumes node for testKey does exist because treeRemove verifies this first.
 bool subTreeRemove (BstNode *thisNode, Key *testKey, BstNode *parentNode) {
 	bool isLeftChild = (parentNode->left == thisNode);
 
 	int compared = customComparer(testKey, thisNode->data);
 	if (compared < 0) {
-		return subTreeRemove(thisNode->left, testKey, thisNode);
+		bool didRemove = subTreeRemove(thisNode->left, testKey, thisNode);
+		if (didRemove) {
+			subTreeCheckBalance(thisNode->left, thisNode);
+		}
+		return didRemove;
 	} else if (compared > 0) {
-		return subTreeRemove(thisNode->right, testKey, thisNode);
+		bool didRemove = subTreeRemove(thisNode->right, testKey, thisNode);
+		if (didRemove) {
+			subTreeCheckBalance(thisNode->right, thisNode);
+		}
+		return didRemove;
 	} else {
 		if (thisNode->left == NULL && thisNode->right == NULL) {
 			// Case 1
@@ -394,8 +417,6 @@ bool subTreeRemove (BstNode *thisNode, Key *testKey, BstNode *parentNode) {
 
 		return true;
 	}
-
-	// TODO: Check Balance here.
 }
 
 /// Removes nodes from tree.
@@ -449,8 +470,7 @@ NodeData  __unused *treeRemove (Bst *thisTree, Key *testKey) {
 		}
 	}
 
-	// TODO: Check Balance here.
-
+	treeCheckBalance(thisTree);
 	thisTree->size--;
 	return toReturn; // return the state of the node data from before it was removed.
 }

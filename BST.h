@@ -43,6 +43,10 @@ void subTreeRotate (BstNode *thisNode, bool rotateLeft, BstNode *parentNode);
 
 void treeRotate (Bst *thisTree, bool rotateLeft);
 
+void subTreeCheckBalance (BstNode *thisNode, BstNode *parentNode);
+
+void treeCheckBalance (Bst *thisTree);
+
 bool subTreeInsert (BstNode *thisNode, Key *testKey);
 
 bool treeInsert (Bst *thisTree, Key *testKey);
