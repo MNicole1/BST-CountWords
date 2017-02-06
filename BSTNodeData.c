@@ -1,4 +1,4 @@
-/*
+#include <ntsid.h>/**
  * This file and the associated H file have all of the data type specific code.
  * Change these to change the type of tree.
  */
@@ -9,8 +9,8 @@
 #include "BST.h"
 #include "BSTNodeData.h"
 
-// Constructor for this tree's data type.
-// Note, currently only takes a key so any extra data has to be made from scratch (eg. a count, or an expansion of the key type).
+/// Constructor for this tree's data type.
+/// Note, currently only takes a key so any extra data has to be made from scratch (eg. a count, or an expansion of the key type).
 NodeData *newNodeData (Key *key) {
 	NodeData *newData = (NodeData *)malloc(sizeof(NodeData));
 
@@ -21,7 +21,7 @@ NodeData *newNodeData (Key *key) {
 	return newData;
 }
 
-// Makes a copy of the current NodeData structure
+/// Makes a copy of the current NodeData
 NodeData *nodeDataCopy (NodeData *thisNodeData) {
 	NodeData *newData = (NodeData *)malloc(sizeof(NodeData));
 
@@ -32,34 +32,36 @@ NodeData *nodeDataCopy (NodeData *thisNodeData) {
 	return newData;
 }
 
-// Returns the key for use in changing the key.
+/// Returns the key for use in changing the key.
 Key *nodeDataGetKey (NodeData *thisNodeData) {
 	return thisNodeData->word;
 }
 
-// Called as part of the insert process.
-// Determines how a keys is greater than or less than the current node.
-// This is the core of the BST.
+/// Determines how a keys is greater than or less than the current node.
+/// Should return in the vein of strcmp.
+/// This is the core of the BST.
 int customComparer (const Key *key, const NodeData *nodeData) {
 	return strcmp(key, nodeData->word); // compare the key to the data's word.
 }
 
-// Called when inserting a key that already existed.
-void customOnInsertExisting (NodeData *thisNodeData) {
+/// Called when inserting a key that already existed in the tree.
+void customOnInsertExisting (NodeData __unused *thisNodeData) {
 	thisNodeData->count++; // Re-encountered this word, increment it's count.
 }
 
-// Called when a key has been found.
-void customOnSearchFind (NodeData *thisNodeData) {
-	// TODO: Do anything on search find?
+/// Called when a key has been found in a search.
+void customOnSearchFind (NodeData  __unused *thisNodeData) {
+	// Do anything on search find for this datatype?
 }
 
-// Represents this node's key as a string. Useful when you only want the key.
+/// Represents this node's key as a string.
+/// Useful when you only want the key.
 char *nodeDataKeyToString (NodeData *thisNodeData) {
-	return strdup(thisNodeData->word); // strdup mallocs a string for me, I'll need to free it later
+	return strdup(thisNodeData->word); // strdup mallocs a string, caller will need to free it later
 }
 
-// Represents this node's data as a string. Feel free to give as much or as little detail here.
+/// Represents this node's data as a string.
+/// Feel free to give as much or as little detail here.
 char *nodeDataToString (NodeData *thisNodeData) {
 	char *toString = (char *)malloc(strlen(thisNodeData->word) + 8); // NOTE: This string can only do up to 3 digit numbers for count.
 	// I could also use itoa() and strcpy()+strcat(), but this is one call. Didn't need itoa after all.
@@ -67,9 +69,8 @@ char *nodeDataToString (NodeData *thisNodeData) {
 	return toString;
 }
 
-// Destroys this NodeData. Called when the node using it is destroyed or before being replaced as part of the remove process.
+/// Destroys this NodeData.
 void nodeDataDestroy (NodeData *thisNodeData) {
 	free(thisNodeData->word);
-
 	free(thisNodeData);
 }

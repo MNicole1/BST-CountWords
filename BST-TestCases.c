@@ -6,7 +6,7 @@
 #include "BST.h"
 
 int main () {
-	// Test case 1, should produce a balanced tree. This is because keys are inserted in level-order
+	// Test case 1, should produce a balanced tree. This is because keys are inserted in level order
 	printf("\nCase 1: Balanced tree. (due to insertion order)\n");
 	Bst *wordTree = newBst();
 	treeInsert(wordTree, "mary");

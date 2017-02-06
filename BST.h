@@ -7,15 +7,15 @@
 
 // Types and/or Structures ————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-// Stores pointers to data type and child branches. NodeData can be changed to make this a different kind of tree as needed.
+/// Stores pointers to data type and child branches. NodeData can be changed to make this a different kind of tree as needed.
 typedef struct bstNodeType {
 	NodeData *data;
 	struct bstNodeType *left;
 	struct bstNodeType *right;
 } BstNode;
 
-// Keeps track of root of tree and the size.
-// This allows for root to be included in rotations.
+/// Keeps track of root of tree and the size.
+/// This allows for root to be included in rotations.
 typedef struct bstType {
 	BstNode *rootNode;
 	int size;
@@ -35,7 +35,7 @@ void treeDestroy (Bst *thisTree);
 
 int subTreeHeight (BstNode *thisNode);
 
-int treeHeight (Bst *thisTree);
+int __unused treeHeight (Bst *thisTree);
 
 bool subTreeInsert (BstNode *thisNode, Key *testKey);
 
@@ -61,7 +61,7 @@ int subTreeCount (BstNode *thisNode);
 
 int __unused treeCount (Bst *thisTree);
 
-void treeArrayDestroy (NodeData **array, int size);
+void __unused treeArrayDestroy (NodeData **array, int size);
 
 int subTreeToArray (BstNode *thisNode, NodeData **arrayInProgress, int runningTotal);
 

@@ -1,4 +1,4 @@
-#if defined(WIN32) || defined(_WIN32) || defined(__CYGWIN__) // if in a windows environment path separator is '\'
+#if defined(WIN32) || defined(_WIN32) || defined(__CYGWIN__) // If a windows environment path separator is '\', else '/'. No NeXT ':'
 #define PATH_SEPARATOR "\\"
 #else
 #define PATH_SEPARATOR "/"
@@ -11,6 +11,7 @@
 #include <libgen.h>
 #include "BST.h"
 
+/// Gets each word one at a time from the file buffer represented by filePointer.
 char *getWord (FILE *filePointer) {
 	char thisWord[100];
 	int currentChar;
@@ -21,15 +22,17 @@ char *getWord (FILE *filePointer) {
 		if (currentChar == EOF) break;
 		if (!isalpha(currentChar)) {
 			if (!charIndex) continue; // Nothing read yet; skip this character
-			else break; // we are beyond the current word
+			else break; // We are beyond the current word
 		}
 		thisWord[charIndex++] = (char)tolower(currentChar);
 	}
 	if (!charIndex) return NULL; // charIndex still 0, no characters were successfully read
 	thisWord[charIndex] = '\0';
-	return strdup(thisWord); // strdup mallocs a string for me, I'll need to free it later
+	return strdup(thisWord); // strdup mallocs a string. the caller will need to free it later
 }
 
+/// Transforms the input filename to the corresponding output filename.
+/// Also validates format of input filename.
 char *getOutputFileName (char *inputFileName) {
 	char *filePart = basename(inputFileName);
 	char *pathPart = dirname(inputFileName);
