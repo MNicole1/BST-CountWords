@@ -434,3 +434,26 @@ void __unused treeToMathematica (Bst *thisTree) {
 	}
 	printf("\n");
 }
+
+int subTreeHeight (BstNode *thisNode) {
+	if (thisNode == NULL) {
+		return 0;
+	}
+
+	int leftHeight = subTreeHeight(thisNode->left);
+	int rightHeight = subTreeHeight(thisNode->right);
+
+	if (leftHeight > rightHeight) {
+		return leftHeight + 1;
+	} else {
+		return rightHeight + 1;
+	}
+}
+
+int treeHeight (Bst *thisTree) {
+	if (thisTree->rootNode == NULL) {
+		return 0;
+	}
+
+	return subTreeHeight(thisTree->rootNode);
+}

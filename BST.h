@@ -33,6 +33,10 @@ void subTreeDestroy (BstNode *thisNode);
 
 void treeDestroy (Bst *thisTree);
 
+int subTreeHeight (BstNode *thisNode);
+
+int treeHeight (Bst *thisTree);
+
 bool subTreeInsert (BstNode *thisNode, Key *testKey);
 
 bool treeInsert (Bst *thisTree, Key *testKey);
