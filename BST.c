@@ -56,6 +56,29 @@ void treeDestroy (Bst *thisTree) {
 	free(thisTree);
 }
 
+int subTreeHeight (BstNode *thisNode) {
+	if (thisNode == NULL) {
+		return 0;
+	}
+
+	int leftHeight = subTreeHeight(thisNode->left);
+	int rightHeight = subTreeHeight(thisNode->right);
+
+	if (leftHeight > rightHeight) {
+		return leftHeight + 1;
+	} else {
+		return rightHeight + 1;
+	}
+}
+
+int treeHeight (Bst *thisTree) {
+	if (thisTree->rootNode == NULL) {
+		return 0;
+	}
+
+	return subTreeHeight(thisTree->rootNode);
+}
+
 // Recurse down the right branch to find the maximum value under this node.
 // Used as part of the remove process and as a general utility.
 NodeData *subTreeMax (BstNode *thisNode) {
@@ -433,27 +456,4 @@ void __unused treeToMathematica (Bst *thisTree) {
 		printf("The tree is empty.");
 	}
 	printf("\n");
-}
-
-int subTreeHeight (BstNode *thisNode) {
-	if (thisNode == NULL) {
-		return 0;
-	}
-
-	int leftHeight = subTreeHeight(thisNode->left);
-	int rightHeight = subTreeHeight(thisNode->right);
-
-	if (leftHeight > rightHeight) {
-		return leftHeight + 1;
-	} else {
-		return rightHeight + 1;
-	}
-}
-
-int treeHeight (Bst *thisTree) {
-	if (thisTree->rootNode == NULL) {
-		return 0;
-	}
-
-	return subTreeHeight(thisTree->rootNode);
 }
