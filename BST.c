@@ -60,7 +60,7 @@ void treeDestroy (Bst *thisTree) {
 // Used as part of the remove process and as a general utility.
 NodeData *subTreeMax (BstNode *thisNode) {
 	if (thisNode->right == NULL) { // Base Case, fully right
-		return thisNode->data;
+		return nodeDataCopy(thisNode->data);
 	}
 
 	return subTreeMax(thisNode->right);
@@ -78,7 +78,7 @@ NodeData  __unused *treeMax (Bst *thisTree) {
 // Used as part of the remove process and as a general utility.
 NodeData *subTreeMin (BstNode *thisNode) {
 	if (thisNode->left == NULL) { // Base Case, fully left
-		return thisNode->data;
+		return nodeDataCopy(thisNode->data);
 	}
 
 	return subTreeMin(thisNode->left);
@@ -230,16 +230,115 @@ NodeData  __unused *treeSearch (Bst *thisTree, Key *testKey) {
 // 2) Node has 1 child. Easy, set parent's pointer to the child and nodeDestroy() the found node.
 // 3) Node has 2 children. Hard, Swap the data of this node and the next biggest (subTreeMin(thisNode->right)), recurse down right.
 //    * Eventually case 1 or 2 will be hit by further recursion.
-NodeData *subTreeRemove (BstNode *thisNode, Key *testKey) {
-	// TODO: Not Implemented
-	return NULL;
+bool subTreeRemove (BstNode *thisNode, Key *testKey, BstNode *parentNode) {
+	bool isLeftChild = (parentNode->left == thisNode);
+
+	int compared = customComparer(testKey, thisNode->data);
+	if (compared < 0) {
+		return subTreeRemove(thisNode->left, testKey, thisNode);
+	} else if (compared > 0) {
+		return subTreeRemove(thisNode->right, testKey, thisNode);
+	} else {
+		if (thisNode->left == NULL && thisNode->right == NULL) {
+			// Case 1
+			nodeDestroy(thisNode);
+			if (isLeftChild) {
+				parentNode->left = NULL;
+			} else {
+				parentNode->right = NULL;
+			}
+		} else if (thisNode->left != NULL && thisNode->right == NULL) {
+			// Case 2: left
+			// Change this node into it's left.
+			BstNode *toDestroy = thisNode->left;
+			nodeDataDestroy(thisNode->data);
+			thisNode->data = nodeDataCopy(toDestroy->data);
+			thisNode->left = toDestroy->left;
+			thisNode->right = toDestroy->right;
+			nodeDestroy(toDestroy);
+		} else if (thisNode->left == NULL && thisNode->right != NULL) {
+			// Case 2: right
+			// Change this node into it's right.
+			BstNode *toDestroy = thisNode->right;
+			nodeDataDestroy(thisNode->data);
+			thisNode->data = nodeDataCopy(toDestroy->data);
+			thisNode->left = toDestroy->left;
+			thisNode->right = toDestroy->right;
+			nodeDestroy(toDestroy);
+		} else if (thisNode->left != NULL && thisNode->right != NULL) {
+			// Case 3
+			nodeDataDestroy(thisNode->data);
+			thisNode->data = subTreeMin(thisNode->right);
+			Key *newKey = nodeDataGetKey(thisNode->data);
+			subTreeRemove(thisNode->right, newKey, thisNode);
+		}
+
+		return true;
+	}
+
+	// TODO: Check Balance here.
 }
 
 // Starts recursive removal process.
-// Note taht this creates a copy that will need to be freed by the caller.
-NodeData *treeRemove (Bst *thisTree, Key *testKey) {
-	// TODO: Not Implemented
-	return NULL;
+// Note that this creates a copy that will need to be freed by the caller.
+// Cases:
+// 1) Found node has no children. Easy, set rootNode pointer to NULL and nodeDestroy() the found node.
+// 2) Node has 1 child. Easy, set return pointer to the child and nodeDestroy() the found node.
+// 3) Node has 2 children. Hard, nodeDataDestroy this data, copy the data of the next biggest
+// (subTreeMin(rootNode->right)), recurse down right with key from new data.
+NodeData  __unused *treeRemove (Bst *thisTree, Key *testKey) {
+	BstNode *rootNode = thisTree->rootNode;
+	if (rootNode == NULL) {
+		return NULL;
+	}
+
+	// Ensure it exists. Grab it's current state if so.
+	NodeData *toReturn = subTreeSearch(rootNode, testKey);
+	if (toReturn == NULL) {
+		return NULL;
+	}
+
+	int compared = customComparer(testKey, rootNode->data);
+	if (compared < 0) {
+		subTreeRemove(rootNode->left, testKey, rootNode);
+	} else if (compared > 0) {
+		subTreeRemove(rootNode->right, testKey, rootNode);
+	} else {
+		if (rootNode->left == NULL && rootNode->right == NULL) {
+			// Case 1
+			nodeDestroy(rootNode);
+			thisTree->rootNode = NULL;
+		} else if (rootNode->left != NULL && rootNode->right == NULL) {
+			// Case 2: left
+			// Change this node into it's left.
+			BstNode *toDestroy = rootNode->left;
+			nodeDataDestroy(rootNode->data);
+			rootNode->data = nodeDataCopy(toDestroy->data);
+			rootNode->left = toDestroy->left;
+			rootNode->right = toDestroy->right;
+			nodeDestroy(toDestroy);
+		} else if (rootNode->left == NULL && rootNode->right != NULL) {
+			// Case 2: right
+			// Change this node into it's right.
+			BstNode *toDestroy = rootNode->right;
+			nodeDataDestroy(rootNode->data);
+			rootNode->data = nodeDataCopy(toDestroy->data);
+			rootNode->left = toDestroy->left;
+			rootNode->right = toDestroy->right;
+			nodeDestroy(toDestroy);
+		} else if (rootNode->left != NULL && rootNode->right != NULL) {
+			// Case 3
+			nodeDataDestroy(rootNode->data);
+			rootNode->data = subTreeMin(rootNode->right);
+			Key *newKey = nodeDataGetKey(rootNode->data);
+			subTreeRemove(rootNode->right, newKey, rootNode);
+		}
+	}
+
+	// TODO: Check Balance here.
+
+	thisTree->size--;
+	return toReturn; // return the state of the node data from before it was removed.
 }
 
 // Recursive in-order traversal of tree.
