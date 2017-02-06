@@ -383,13 +383,13 @@ bool subTreeRemove (BstNode *thisNode, Key *testKey, BstNode *parentNode) {
 	if (compared < 0) {
 		bool didRemove = subTreeRemove(thisNode->left, testKey, thisNode);
 		if (didRemove) {
-			subTreeCheckBalance(thisNode->left, thisNode);
+			// subTreeCheckBalance(thisNode->left, thisNode);
 		}
 		return didRemove;
 	} else if (compared > 0) {
 		bool didRemove = subTreeRemove(thisNode->right, testKey, thisNode);
 		if (didRemove) {
-			subTreeCheckBalance(thisNode->right, thisNode);
+			// subTreeCheckBalance(thisNode->right, thisNode);
 		}
 		return didRemove;
 	} else {
@@ -482,7 +482,7 @@ NodeData  __unused *treeRemove (Bst *thisTree, Key *testKey) {
 		}
 	}
 
-	treeCheckBalance(thisTree);
+	// treeCheckBalance(thisTree);
 	thisTree->size--;
 	return toReturn; // return the state of the node data from before it was removed.
 }
