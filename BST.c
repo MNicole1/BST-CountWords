@@ -573,7 +573,7 @@ void __unused treeToMathematica (Bst *thisTree) {
 		printf("TreePlot[{root -> %s, ", temp);
 		free(temp); // freeing the extra word that's been malloced in nodeDataKeyToString.
 		subTreeToMathematica(thisTree->rootNode);
-		printf("}, Automatic, root, VertexLabeling -> True, ImageSize -> Full, AspectRatio -> Automatic]");
+		printf("\b\b}, Top, root, VertexLabeling -> False, ImageSize -> {720, 300}]"); // "\b\b" removes the last extra ", "
 	} else {
 		printf("The tree is empty.");
 	}
