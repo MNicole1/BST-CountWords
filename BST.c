@@ -10,8 +10,6 @@
 #include "BSTNodeData.h"
 #include "BST.h"
 
-#define DO_SELF_BALANCE false
-
 // TODO: Implement rotation on insert/remove to allow for self balancing trees.
 // TODO: "Methods" don't check of their "thisX" is null.
 
@@ -180,10 +178,6 @@ void treeRotate (Bst *thisTree, bool rotateLeft) {
 
 /// Checks balance of subtree and performs rotation if needed.
 void subTreeCheckBalance (BstNode *thisNode, BstNode *parentNode) {
-	if (!DO_SELF_BALANCE) { // easily disable self balancing.
-		return;
-	}
-
 	int balanceFactor = subTreeHeight(thisNode->right) - subTreeHeight(thisNode->left);
 	if (balanceFactor < -1) { // left heavy
 		subTreeRotate(thisNode, ROT_RIGHT, parentNode);
@@ -194,10 +188,6 @@ void subTreeCheckBalance (BstNode *thisNode, BstNode *parentNode) {
 
 /// Checks balance of tree and performs rotation if needed.
 void treeCheckBalance (Bst *thisTree) {
-	if (!DO_SELF_BALANCE) { // easily disable self balancing.
-		return;
-	}
-
 	BstNode *rootNode = thisTree->rootNode;
 
 	int balanceFactor = subTreeHeight(rootNode->right) - subTreeHeight(rootNode->left);
