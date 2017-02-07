@@ -10,7 +10,6 @@
 #include "BSTNodeData.h"
 #include "BST.h"
 
-// TODO: Implement rotation on insert/remove to allow for self balancing trees.
 // TODO: "Methods" don't check of their "thisX" is null.
 
 /// Constructor for Bst.
