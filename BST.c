@@ -483,6 +483,7 @@ NodeData  __unused *treeRemove (Bst *thisTree, Key *testKey) {
 			rootNode->data = subTreeMin(rootNode->right);
 			Key *newKey = nodeDataGetKey(rootNode->data);
 			subTreeRemove(rootNode->right, newKey, rootNode);
+			free(newKey);
 		}
 	}
 

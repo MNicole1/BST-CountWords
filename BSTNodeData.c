@@ -33,8 +33,9 @@ NodeData *nodeDataCopy (NodeData *thisNodeData) {
 }
 
 /// Returns the key for use in changing the key.
+/// Allocates a copy of the key. Will need to be freed by the caller.
 Key *nodeDataGetKey (NodeData *thisNodeData) {
-	return thisNodeData->word;
+	return strdup(thisNodeData->word);
 }
 
 /// Determines how a keys is greater than or less than the current node.
@@ -56,12 +57,14 @@ void customOnSearchFind (NodeData  __unused *thisNodeData) {
 
 /// Represents this node's key as a string.
 /// Useful when you only want the key.
+/// Allocates new string. Will need to be freed by the caller.
 char *nodeDataKeyToString (NodeData *thisNodeData) {
 	return strdup(thisNodeData->word); // strdup mallocs a string, caller will need to free it later
 }
 
 /// Represents this node's data as a string.
 /// Feel free to give as much or as little detail here.
+/// Allocates new string. Will need to be freed by the caller.
 char *nodeDataToString (NodeData *thisNodeData) {
 	char *toString = (char *)malloc(strlen(thisNodeData->word) + 8); // NOTE: This string can only do up to 3 digit numbers for count.
 	// I could also use itoa() and strcpy()+strcat(), but this is one call. Didn't need itoa after all.
@@ -70,6 +73,7 @@ char *nodeDataToString (NodeData *thisNodeData) {
 }
 
 /// Destroys this NodeData.
+/// Destroys node's data as well so a copy will have to be made if data is needed after node is gone. (see remove).
 void nodeDataDestroy (NodeData *thisNodeData) {
 	free(thisNodeData->word);
 	free(thisNodeData);
