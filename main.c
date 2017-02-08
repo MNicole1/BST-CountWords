@@ -75,7 +75,10 @@ int main (int argc, char *argv[]) {
 
 
 	FILE *inputFile = fopen(inputFileName, "r");
-	// TODO: handle missing file
+	if (inputFile == NULL) {
+		fprintf(stderr, "Error: File \"%s\" does not exist. Please ensure you pass a valid filename.", inputFileName);
+		return 1;
+	}
 
 	char *word;
 	while ((word = getWord(inputFile))) {
