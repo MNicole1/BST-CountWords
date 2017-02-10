@@ -2,19 +2,13 @@
 #define MARCO_BST_H
 
 #include <stdbool.h>
+#include "BSTNode.h"
 #include "BSTNodeData.h"
 
 #define ROT_LEFT true
 #define ROT_RIGHT false
 
 // Types and/or Structures ————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-/// Stores pointers to data type and child branches. NodeData can be changed to make this a different kind of tree as needed.
-typedef struct bstNodeType {
-	NodeData *data;
-	struct bstNodeType *left;
-	struct bstNodeType *right;
-} BstNode;
 
 /// Keeps track of root of tree and the size.
 /// This allows for root to be included in rotations.
@@ -27,65 +21,33 @@ typedef struct bstType {
 
 Bst *newBst ();
 
-BstNode *newBstNode (Key *newKey);
-
-void nodeDestroy (BstNode *thisNode);
-
-void subTreeDestroy (BstNode *thisNode);
-
 void treeDestroy (Bst *thisTree);
-
-int subTreeHeight (BstNode *thisNode);
 
 int __unused treeHeight (Bst *thisTree);
 
-void subTreeRotate (BstNode *thisNode, bool rotateLeft, BstNode *parentNode);
-
 void treeRotate (Bst *thisTree, bool rotateLeft);
-
-void subTreeCheckBalance (BstNode *thisNode, BstNode *parentNode);
 
 void treeCheckBalance (Bst *thisTree);
 
-bool subTreeInsert (BstNode *thisNode, Key *testKey);
-
 bool treeInsert (Bst *thisTree, Key *testKey);
-
-NodeData *subTreeSearch (BstNode *thisNode, Key *testKey);
 
 NodeData  __unused *treeSearch (Bst *thisTree, Key *testKey);
 
-bool subTreeRemove (BstNode *thisNode, Key *testKey, BstNode *parentNode);
-
 NodeData  __unused *treeRemove (Bst *thisTree, Key *testKey);
-
-NodeData *subTreeMax (BstNode *thisNode);
 
 NodeData  __unused *treeMax (Bst *thisTree);
 
-NodeData *subTreeMin (BstNode *thisNode);
-
 NodeData  __unused *treeMin (Bst *thisTree);
-
-int subTreeCount (BstNode *thisNode);
 
 int __unused treeCount (Bst *thisTree);
 
 void __unused treeArrayDestroy (NodeData **array, int size);
 
-int subTreeToArray (BstNode *thisNode, NodeData **arrayInProgress, int runningTotal);
-
 NodeData __unused **treeToArray (Bst *thisTree);
-
-void subTreeDebug (BstNode *thisNode, int depth);
 
 void __unused treeDebug (Bst *thisTree);
 
-void subTreeFPrint (FILE *fp, BstNode *thisNode);
-
 void __unused treeFPrint (FILE *fp, Bst *thisTree);
-
-void subTreeToMathematica (BstNode *thisNode);
 
 void __unused treeToMathematica (Bst *thisTree);
 

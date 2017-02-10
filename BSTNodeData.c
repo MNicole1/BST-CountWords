@@ -1,4 +1,4 @@
-#include <ntsid.h>/**
+/**
  * This file and the associated H file have all of the data type specific code.
  * Change these to change the type of tree.
  */
@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "BST.h"
 #include "BSTNodeData.h"
 
 /// Constructor for this tree's data type.
