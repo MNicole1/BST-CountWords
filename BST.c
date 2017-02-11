@@ -7,8 +7,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "BST.h"
 #include "BSTNode.h"
+#include "BST.h"
 
 // TODO: "Methods" don't check of their "thisX" is null.
 
