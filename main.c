@@ -15,6 +15,9 @@
 /**
  * Gets each word one at a time from the file buffer
  * represented by filePointer.
+ *
+ * Retrieved from <http://stackoverflow.com/a/26359165> on 2017-02-02
+ * vars renamed for clarity after retrieval.
  */
 char *getWord (FILE *filePointer) {
   char thisWord[100];
