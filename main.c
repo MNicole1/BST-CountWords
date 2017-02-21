@@ -1,16 +1,16 @@
-/* If a windows environment path separator is '\', else '/'. No NeXT ':' */
-#if defined(WIN32) || defined(_WIN32) || defined(__CYGWIN__)
-#define PATH_SEPARATOR "\\"
-#else
-#define PATH_SEPARATOR "/"
-#endif
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <libgen.h>
 #include "BST.h"
+
+/* If a windows environment path separator is '\', else '/'. No NeXT ':' */
+#if defined(WIN32) || defined(_WIN32) || defined(__CYGWIN__)
+#define PATH_SEPARATOR "\\"
+#else
+#define PATH_SEPARATOR "/"
+#endif
 
 /**
  * Gets each word one at a time from the file buffer

@@ -1,5 +1,5 @@
 /**
- * This file and the associated H file have all of the data type
+ * This file and the associated h file have all of the data type
  * specific code.
  * Change these to change the type of tree.
  */
