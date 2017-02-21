@@ -1,28 +1,32 @@
 /*
- * This file and the associated C file have all of the data type specific code.
+ * This file and the associated C file have
+ * all of the data type specific code.
  * Change these to change the type of tree.
  */
 
 #ifndef MARCO_BST_NODE_DATA_H
 #define MARCO_BST_NODE_DATA_H
 
-// Types and/or Structures ————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+/* Types and/or Structures ----------------------------------------------- */
 
-typedef char Key; // This tree is indexed by strings.
+/* This tree is indexed by strings. */
+typedef char Key; 
 
-/// Stores the custom data for this version of BST
+/**
+ * Stores the custom data for this version of BST
+ */
 typedef struct nodeDataType {
-	Key *word; // The keys are the words we are counting
-	int count; // We want to know how many times we encounter each word
+  Key *word; /* The keys are the words we are counting */
+  int count; /* We want to know how many times we encounter each word */
 } NodeData;
 
-// Functions ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+/* Functions ------------------------------------------------------------- */
 
 NodeData *newNodeData (Key *key);
 
 NodeData *nodeDataCopy (NodeData *thisNodeData);
 
-Key *nodeDataGetKey(NodeData *thisNodeData);
+Key *nodeDataGetKey (NodeData *thisNodeData);
 
 int customComparer (const Key *key, const NodeData *nodeData);
 
@@ -36,4 +40,4 @@ char *nodeDataToString (NodeData *thisNodeData);
 
 void nodeDataDestroy (NodeData *thisNodeData);
 
-#endif // MARCO_BST_NODE_DATA_H
+#endif /* MARCO_BST_NODE_DATA_H */

@@ -7,16 +7,19 @@
 #define ROT_LEFT true
 #define ROT_RIGHT false
 
-// Types and/or Structures ————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+/* Types and/or Structures ----------------------------------------------- */
 
-/// Stores pointers to data type and child branches. NodeData can be changed to make this a different kind of tree as needed.
+/**
+ * Stores pointers to data type and child branches.
+ * NodeData can be changed to make this a different kind of tree as needed.
+ */
 typedef struct bstNodeType {
-	NodeData *data;
-	struct bstNodeType *left;
-	struct bstNodeType *right;
+  NodeData *data;
+  struct bstNodeType *left;
+  struct bstNodeType *right;
 } BstNode;
 
-// Functions ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+/* Functions ------------------------------------------------------------- */
 
 BstNode *newBstNode (Key *newKey);
 
@@ -36,7 +39,8 @@ NodeData *subTreeMin (BstNode *thisNode);
 
 int subTreeCount (BstNode *thisNode);
 
-int subTreeToArray (BstNode *thisNode, NodeData **arrayInProgress, int runningTotal);
+int subTreeToArray (BstNode *thisNode, NodeData **arrayInProgress,
+                    int runningTotal);
 
 bool subTreeInsert (BstNode *thisNode, Key *testKey);
 
@@ -50,4 +54,4 @@ void subTreeFPrint (struct __sFILE *fp, BstNode *thisNode);
 
 void subTreeToMathematica (BstNode *thisNode);
 
-#endif //MARCO_BST_NODE_H
+#endif /* MARCO_BST_NODE_H */

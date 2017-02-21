@@ -8,16 +8,18 @@
 #define ROT_LEFT true
 #define ROT_RIGHT false
 
-// Types and/or Structures ————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+/* Types and/or Structures ----------------------------------------------- */
 
-/// Keeps track of root of tree and the size.
-/// This allows for root to be included in rotations.
+/**
+ * Keeps track of root of tree and the size.
+ * This allows for root to be included in rotations.
+ */
 typedef struct bstType {
-	BstNode *rootNode;
-	int size;
+  BstNode *rootNode;
+  int size;
 } Bst;
 
-// Functions ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+/* Functions ------------------------------------------------------------- */
 
 Bst *newBst ();
 
@@ -51,4 +53,4 @@ void __unused treeFPrint (FILE *fp, Bst *thisTree);
 
 void __unused treeToMathematica (Bst *thisTree);
 
-#endif // MARCO_BST_H
+#endif /* MARCO_BST_H */
