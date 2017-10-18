@@ -61,7 +61,7 @@ int customComparer (const Key *key, const NodeData *nodeData) {
 /**
  * Called when inserting a key that already existed in the tree.
  */
-void customOnInsertExisting (NodeData __unused *thisNodeData) {
+void customOnInsertExisting (NodeData *thisNodeData) {
   /* Re-encountered this word, increment it's count. */
   thisNodeData->count++;
 }
@@ -69,7 +69,7 @@ void customOnInsertExisting (NodeData __unused *thisNodeData) {
 /**
  * Called when a key has been found in a search.
  */
-void customOnSearchFind (NodeData  __unused *thisNodeData) {
+void customOnSearchFind (NodeData *thisNodeData) {
   /* Do anything on search find for this datatype? */
 }
 

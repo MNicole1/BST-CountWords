@@ -25,7 +25,7 @@ Bst *newBst ();
 
 void treeDestroy (Bst *thisTree);
 
-int __unused treeHeight (Bst *thisTree);
+int treeHeight (Bst *thisTree);
 
 void treeRotate (Bst *thisTree, bool rotateLeft);
 
@@ -33,24 +33,24 @@ void treeCheckBalance (Bst *thisTree);
 
 bool treeInsert (Bst *thisTree, Key *testKey);
 
-NodeData  __unused *treeSearch (Bst *thisTree, Key *testKey);
+NodeData *treeSearch (Bst *thisTree, Key *testKey);
 
-NodeData  __unused *treeRemove (Bst *thisTree, Key *testKey);
+NodeData *treeRemove (Bst *thisTree, Key *testKey);
 
-NodeData  __unused *treeMax (Bst *thisTree);
+NodeData *treeMax (Bst *thisTree);
 
-NodeData  __unused *treeMin (Bst *thisTree);
+NodeData *treeMin (Bst *thisTree);
 
-int __unused treeCount (Bst *thisTree);
+int treeCount (Bst *thisTree);
 
-void __unused treeArrayDestroy (NodeData **array, int size);
+void treeArrayDestroy (NodeData **array, int size);
 
-NodeData __unused **treeToArray (Bst *thisTree);
+NodeData **treeToArray (Bst *thisTree);
 
-void __unused treeDebug (Bst *thisTree);
+void treeDebug (Bst *thisTree);
 
-void __unused treeFPrint (FILE *fp, Bst *thisTree);
+void treeFPrint (FILE *fp, Bst *thisTree);
 
-void __unused treeToMathematica (Bst *thisTree);
+void treeToMathematica (Bst *thisTree);
 
 #endif /* MARCO_BST_H */

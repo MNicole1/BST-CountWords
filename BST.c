@@ -41,7 +41,7 @@ void treeDestroy (Bst *thisTree) {
 /**
  * Recursively finds maximum height of this tree.
  */
-int __unused treeHeight (Bst *thisTree) {
+int treeHeight (Bst *thisTree) {
   if (thisTree->rootNode == NULL) {
     return 0;
   }
@@ -110,7 +110,7 @@ void treeCheckBalance (Bst *thisTree) {
  * Recursively finds the maximum value in this tree.
  * Recurses down the right branch to the rightmost item.
  */
-NodeData  __unused *treeMax (Bst *thisTree) {
+NodeData *treeMax (Bst *thisTree) {
   if (thisTree->rootNode == NULL) {
     return NULL;
   }
@@ -121,7 +121,7 @@ NodeData  __unused *treeMax (Bst *thisTree) {
  * Recursively finds the minimum value in this tree.
  * Recurses down the left branch to the leftmost item.
  */
-NodeData  __unused *treeMin (Bst *thisTree) {
+NodeData *treeMin (Bst *thisTree) {
   if (thisTree->rootNode == NULL) {
     return NULL;
   }
@@ -131,7 +131,7 @@ NodeData  __unused *treeMin (Bst *thisTree) {
 /**
  * Recursively counts nodes in this tree.
  */
-int __unused treeCount (Bst *thisTree) {
+int treeCount (Bst *thisTree) {
   if (thisTree->rootNode == NULL) {
     return 0;
   }
@@ -142,7 +142,7 @@ int __unused treeCount (Bst *thisTree) {
 /**
  * Destroys the array created by treeToArray.
  */
-void __unused treeArrayDestroy (NodeData **array, int size) {
+void treeArrayDestroy (NodeData **array, int size) {
   NodeData *thisNode;
   for (int i = 0; i < size; i++) {
     thisNode = array[i];
@@ -156,7 +156,7 @@ void __unused treeArrayDestroy (NodeData **array, int size) {
  * of the node's data.
  * Needs to be freed after use.
  */
-NodeData __unused **treeToArray (Bst *thisTree) {
+NodeData **treeToArray (Bst *thisTree) {
   if (thisTree->rootNode == NULL) {
     return NULL;
   }
@@ -188,7 +188,7 @@ bool treeInsert (Bst *thisTree, Key *testKey) {
  * Recursively searcehs tree for key value.
  * Note that this creates a copy that will need to be freed by the caller.
  */
-NodeData  __unused *treeSearch (Bst *thisTree, Key *testKey) {
+NodeData *treeSearch (Bst *thisTree, Key *testKey) {
   if (thisTree->rootNode == NULL) {
     return NULL;
   }
@@ -200,7 +200,7 @@ NodeData  __unused *treeSearch (Bst *thisTree, Key *testKey) {
  * Removes nodes from tree.
  * Note that this creates a copy that will need to be freed by the caller.
  */
-NodeData  __unused *treeRemove (Bst *thisTree, Key *testKey) {
+NodeData *treeRemove (Bst *thisTree, Key *testKey) {
   BstNode *rootNode = thisTree->rootNode;
   if (rootNode == NULL) {
     return NULL;
@@ -258,7 +258,7 @@ NodeData  __unused *treeRemove (Bst *thisTree, Key *testKey) {
  * Prints diagnostic information about tree structure.
  * Note that this is unreadable on larger trees, use ToMathematica for that.
  */
-void __unused treeDebug (Bst *thisTree) {
+void treeDebug (Bst *thisTree) {
   if (thisTree->rootNode != NULL) {
     subTreeDebug(thisTree->rootNode, 0);
   } else {
@@ -271,7 +271,7 @@ void __unused treeDebug (Bst *thisTree) {
  * Initiates recursive printing in order traversal of the tree to a file
  * (or stdio).
  */
-void __unused treeFPrint (FILE *fp, Bst *thisTree) {
+void treeFPrint (FILE *fp, Bst *thisTree) {
   if (thisTree->rootNode != NULL) {
     subTreeFPrint(fp, thisTree->rootNode);
   } else {
@@ -284,7 +284,7 @@ void __unused treeFPrint (FILE *fp, Bst *thisTree) {
  * Transforms this tree's structure into a format that can be executed in
  * mathematica.
  */
-void __unused treeToMathematica (Bst *thisTree) {
+void treeToMathematica (Bst *thisTree) {
   if (thisTree->rootNode != NULL) {
     char *temp = nodeDataKeyToString(thisTree->rootNode->data);
     printf("TreePlot[{root -> %s, ", temp);

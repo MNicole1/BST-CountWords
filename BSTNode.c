@@ -358,7 +358,7 @@ void subTreeFPrint (struct __sFILE *fp, BstNode *thisNode) {
 void subTreeToMathematica (BstNode *thisNode) {
   if (thisNode->left != NULL) {
     char *temp1 = nodeDataKeyToString(thisNode->data),
-         *temp2 = nodeDataKeyToString(thisNode->left->data);
+        *temp2 = nodeDataKeyToString(thisNode->left->data);
     printf("%s -> %s, ", temp1, temp2);
     /* freeing the extra word that's been malloced in nodeDataKeyToString. */
     free(temp1);
@@ -368,7 +368,7 @@ void subTreeToMathematica (BstNode *thisNode) {
 
   if (thisNode->right != NULL) {
     char *temp1 = nodeDataKeyToString(thisNode->data),
-         *temp2 = nodeDataKeyToString(thisNode->right->data);
+        *temp2 = nodeDataKeyToString(thisNode->right->data);
     printf("%s -> %s, ", temp1, temp2);
     /* freeing the extra word that's been malloced in nodeDataKeyToString. */
     free(temp1);

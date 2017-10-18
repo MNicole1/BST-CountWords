@@ -24,7 +24,7 @@ char *getWord (FILE *filePointer) {
   int currentChar;
   size_t charIndex;
 
-  for (charIndex = 0; charIndex < sizeof(thisWord) - 1; ) {
+  for (charIndex = 0; charIndex < sizeof(thisWord) - 1;) {
     currentChar = fgetc(filePointer);
     if (currentChar == EOF) break;
     if (!isalpha(currentChar)) {
@@ -71,11 +71,11 @@ int main (int argc, char *argv[]) {
   if (argc <= 1) {
     /* Literals next to each other are effectively concatenated. */
     printf("\nUsage: BST_CountWords <path/of/input_file>\n"
-           "The file name should be input*.txt where the expansion of * "
-           "will be the index.\nThis same index will appear in the output "
-           "file \"myoutput*.txt\".\nYou can pass a file name alone or a "
-           "path to a file.\nOutput will be in the same directory as "
-           "input.\n");
+               "The file name should be input*.txt where the expansion of * "
+               "will be the index.\nThis same index will appear in the output "
+               "file \"myoutput*.txt\".\nYou can pass a file name alone or a "
+               "path to a file.\nOutput will be in the same directory as "
+               "input.\n");
     return 1;
   }
 

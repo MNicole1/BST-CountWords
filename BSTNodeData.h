@@ -10,7 +10,7 @@
 /* Types and/or Structures ----------------------------------------------- */
 
 /* This tree is indexed by strings. */
-typedef char Key; 
+typedef char Key;
 
 /**
  * Stores the custom data for this version of BST
@@ -32,7 +32,7 @@ int customComparer (const Key *key, const NodeData *nodeData);
 
 void customOnInsertExisting (NodeData *thisNodeData);
 
-void customOnSearchFind (NodeData  __unused *thisNodeData);
+void customOnSearchFind (NodeData *thisNodeData);
 
 char *nodeDataKeyToString (NodeData *thisNodeData);
 
