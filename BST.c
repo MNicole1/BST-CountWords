@@ -1,7 +1,7 @@
 /**
  * This is an implementation of a binary search tree.
  * It has been made fairly generically and its value data type can
- * be changed by changing the nodeDataType struct in BSENodeData.h
+ * be changed by changing the nodeDataType struct in BSTNodeData.h
  * When adding functions make sure to make them agnostic to
  * the datatype of the data member.
  */
@@ -12,7 +12,7 @@
 #include "BSTNode.h"
 #include "BST.h"
 
-/* TODO: "Methods" don't check of their "thisX" is null. */
+/* TODO: "Methods" don't check if their "thisX" is null. */
 
 /**
  * Constructor for Bst.

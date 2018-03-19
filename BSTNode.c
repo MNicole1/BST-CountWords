@@ -30,8 +30,8 @@ void nodeDestroy (BstNode *thisNode) {
 }
 
 /**
- * Recursively destroys this subtree.
- * Destroys the whole subtree under this node as well as this node.
+ * Recursively destroys this sub-tree.
+ * Destroys the whole sub-tree under this node as well as this node.
  * For use as part of finalizing the tree.
  */
 void subTreeDestroy (BstNode *thisNode) {
@@ -47,7 +47,7 @@ void subTreeDestroy (BstNode *thisNode) {
 }
 
 /**
- * Recursively finds maximum height of this subtree.
+ * Recursively finds maximum height of this sub-tree.
  */
 int subTreeHeight (BstNode *thisNode) {
   if (thisNode == NULL) {
@@ -65,7 +65,7 @@ int subTreeHeight (BstNode *thisNode) {
 }
 
 /**
- * Rotates the subtree about this node.
+ * Rotates the sub-tree about this node.
  * Updates this node's parent
  */
 void subTreeRotate (BstNode *thisNode, bool rotateLeft, BstNode *parentNode) {
@@ -115,7 +115,7 @@ void subTreeRotate (BstNode *thisNode, bool rotateLeft, BstNode *parentNode) {
 }
 
 /**
- * Checks balance of subtree and performs rotation if needed.
+ * Checks balance of sub-tree and performs rotation if needed.
  */
 void subTreeCheckBalance (BstNode *thisNode, BstNode *parentNode) {
   int balanceFactor =
@@ -128,7 +128,7 @@ void subTreeCheckBalance (BstNode *thisNode, BstNode *parentNode) {
 }
 
 /**
- * Recursively finds the maximum value in this subtree.
+ * Recursively finds the maximum value in this sub-tree.
  * Recurses down the right branch to the rightmost item.
  */
 NodeData *subTreeMax (BstNode *thisNode) {
@@ -140,9 +140,9 @@ NodeData *subTreeMax (BstNode *thisNode) {
 }
 
 /**
- * Recursively finds the minimum value in this subtree.
+ * Recursively finds the minimum value in this sub-tree.
  * Recurses down the left branch to the leftmost item.
- * Also used durring the removal process.
+ * Also used during the removal process.
  */
 NodeData *subTreeMin (BstNode *thisNode) {
   if (thisNode->left == NULL) { /* Base Case, fully left */
@@ -153,7 +153,7 @@ NodeData *subTreeMin (BstNode *thisNode) {
 }
 
 /**
- * Recursively counts nodes in this subtree.
+ * Recursively counts nodes in this sub-tree.
  */
 int subTreeCount (BstNode *thisNode) {
   if (thisNode == NULL) {

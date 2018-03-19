@@ -12,7 +12,7 @@
 /**
  * Constructor for this tree's data type.
  * Note, currently only takes a key so any extra data has to be made from
- * scratch (eg. a count, or an expansion of the key type).
+ * scratch (e.g. a count, or an expansion of the key type).
  */
 NodeData *newNodeData (Key *key) {
   NodeData *newData = (NodeData *)malloc(sizeof(NodeData));
